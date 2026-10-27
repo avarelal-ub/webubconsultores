@@ -73,7 +73,12 @@ function llenarDoc_(body, lead, res) {
   // --- Portada del resultado ---
   parrafo_(body, 'DIAGNÓSTICO DE INSTITUCIONALIZACIÓN', { size: 8, bold: true, color: PDF.AZUL, despues: 4 });
   parrafo_(body, lead.empresa, { size: 22, bold: true, color: PDF.AZUL, despues: 2, interlineado: 1.1 });
-  parrafo_(body, lead.nombre + ' · ' + lead.puesto + ' · ' + fechaEs_(new Date()), { size: 9, despues: 14 });
+  parrafo_(body, lead.nombre + ' · ' + lead.puesto + ' · ' + fechaEs_(new Date()), { size: 9, despues: 4 });
+  // Enlace discreto arriba para agendar sin tener que llegar al final del reporte.
+  const arriba = parrafo_(body, 'Revisa estos resultados con un consultor de UB: Agenda tu sesión →', { size: 9, color: PDF.AZUL, despues: 14 });
+  const ini = arriba.getText().indexOf('Agenda tu sesión');
+  arriba.editAsText().setBold(ini, arriba.getText().length - 1, true);
+  arriba.editAsText().setLinkUrl(ini, arriba.getText().length - 1, CONFIG.URL_AGENDA);
 
   const caja = cajaEn_(body, PDF.GRIS, 14);
   estilo_(primerParrafo_(caja, 'RESULTADO GLOBAL'), { size: 8, bold: true, despues: 2 });
@@ -159,7 +164,7 @@ function llenarDoc_(body, lead, res) {
   const cta = cajaEn_(body, PDF.AZUL, 14);
   estilo_(primerParrafo_(cta, 'Siguiente paso: Diagnóstico Profundo'), { size: 11, bold: true, color: '#FFFFFF', despues: 4 });
   estilo_(cta.appendParagraph('Este resultado es un pre-diagnóstico basado únicamente en tus respuestas. Un Diagnóstico Profundo con ' + CONFIG.FIRMA +
-    ' permite contrastar estos hallazgos con la mirada de la familia y del equipo directivo, y construir un plan de acción a la medida de ' + lead.empresa + '.'),
+    ' permite contrastar estos hallazgos con la mirada de la familia y del equipo directivo, y construir un plan de acción a la medida de ' + conPunto_(lead.empresa)),
     { size: 9, color: '#FFFFFF', despues: 6 });
   const pa = estilo_(cta.appendParagraph('Agenda tu sesión →'), { size: 10, bold: true, color: PDF.LIMA, despues: 0 });
   pa.editAsText().setLinkUrl(CONFIG.URL_AGENDA);

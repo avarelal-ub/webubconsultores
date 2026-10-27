@@ -240,7 +240,7 @@ function construirCorreo_(lead, res) {
     'Resultado global: ' + etiquetaGlobal_(res) + '\n\n' + lineas.join('\n') + '\n\n' +
     'En el PDF adjunto encontrarás el detalle y las recomendaciones para cada sistema, con el pasaje del libro "' + DX.libroCita + '" de Alfonso Urrea donde puedes profundizar: ' + DX.libros[0].url + '\n\n' +
     'Este resultado es un pre-diagnóstico basado únicamente en tus respuestas. Un Diagnóstico Profundo con ' + CONFIG.FIRMA +
-    ' permite entender a detalle estos hallazgos y construir un plan de acción a la medida de ' + lead.empresa + '. ' + agendaTxt +
+    ' permite entender a detalle estos hallazgos y construir un plan de acción a la medida de ' + conPunto_(lead.empresa) + ' ' + agendaTxt +
     '\n\n' + CONFIG.FIRMA;
 
   const filas = SISTEMAS.map(function (s) {
@@ -259,7 +259,7 @@ function construirCorreo_(lead, res) {
     '<table style="width:100%;border-collapse:collapse">' + filas + '</table>' +
     '<p style="margin-top:20px">En el <strong>PDF adjunto</strong> encontrarás el detalle y las recomendaciones para cada sistema, con el pasaje del libro <a href="' + esc_(DX.libros[0].url) + '"><em>' + esc_(DX.libroCita) + '</em></a> de Alfonso Urrea donde puedes profundizar.</p>' +
     '<p>Este resultado es un pre-diagnóstico basado únicamente en tus respuestas. Un Diagnóstico Profundo con ' + esc_(CONFIG.FIRMA) +
-    ' permite entender a detalle estos hallazgos y construir un plan de acción a la medida de ' + esc_(lead.empresa) + '.</p>' +
+    ' permite entender a detalle estos hallazgos y construir un plan de acción a la medida de ' + esc_(conPunto_(lead.empresa)) + '</p>' +
     '<p style="margin:20px 0"><a href="' + esc_(CONFIG.URL_AGENDA) + '" style="background:#06536B;color:#fff;padding:12px 22px;text-decoration:none;font-weight:bold">Agendar mi sesión</a></p>' +
     '<p style="color:#777;font-size:13px">' + esc_(CONFIG.FIRMA) + '</p></div>';
 
@@ -313,6 +313,7 @@ function construirPdfHtml_(lead, res) {
     '<div style="font-size:11px;color:#06536B;font-weight:bold;letter-spacing:2px">UB CONSULTORES</div>' +
     '<h1 style="color:#06536B;font-size:22px;margin:6px 0 2px 0">Diagnóstico de institucionalización</h1>' +
     '<div style="color:#555">' + esc_(lead.empresa) + ' · ' + esc_(lead.nombre) + ' · ' + fecha + '</div></div>' +
+    '<p style="margin:0 0 14px 0;font-size:11px">Revisa estos resultados con un consultor de UB: <a href="' + esc_(CONFIG.URL_AGENDA) + '" style="color:#06536B;font-weight:bold">Agenda tu sesión →</a></p>' +
 
     '<table style="width:100%;margin-bottom:6px"><tr><td style="background:#f3f5f6;padding:16px;text-align:center">' +
     '<div style="font-size:11px;color:#555;letter-spacing:1px">RESULTADO GLOBAL</div>' +
@@ -338,7 +339,7 @@ function construirPdfHtml_(lead, res) {
     '<div style="margin-top:26px;padding:14px;background:#06536B;color:#fff">' +
     '<strong>Siguiente paso: Diagnóstico Profundo</strong><br>' +
     'Este resultado es un pre-diagnóstico basado únicamente en tus respuestas. Un Diagnóstico Profundo con ' + esc_(CONFIG.FIRMA) +
-    ' permite contrastar estos hallazgos con la mirada de la familia y del equipo directivo, y construir un plan de acción a la medida de ' + esc_(lead.empresa) + '.<br>' +
+    ' permite contrastar estos hallazgos con la mirada de la familia y del equipo directivo, y construir un plan de acción a la medida de ' + esc_(conPunto_(lead.empresa)) + '<br>' +
     '<span style="color:#CBDC2F">Agenda tu sesión: ' + esc_(CONFIG.URL_AGENDA) + '</span></div>' +
     '<p style="color:#888;font-size:10px;margin-top:14px">Pre-diagnóstico generado automáticamente a partir de las respuestas proporcionadas. No sustituye una evaluación profesional.</p>' +
     '</body></html>';
@@ -417,6 +418,12 @@ function registrarError_(ss, mensaje) {
 // ===========================================================================
 function recortar_(s, max) {
   return String(s === undefined || s === null ? '' : s).replace(/\s+/g, ' ').trim().substring(0, max);
+}
+
+/** Agrega el punto final solo si el texto no termina ya en puntuación (evita "S.A. de C.V.."). */
+function conPunto_(s) {
+  s = String(s === undefined || s === null ? '' : s);
+  return /[.!?]$/.test(s) ? s : s + '.';
 }
 
 function esc_(s) {

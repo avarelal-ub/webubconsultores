@@ -619,6 +619,9 @@ nav.primary a.cta-dx::after{ display:none; }
 .dx-book-h{ display:block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ub); margin-bottom:4px; }
 .dx-book q{ quotes:none; font-style:italic; color:var(--ink); }
 .dx-book q::before{ content:'«'; } .dx-book q::after{ content:'»'; }
+.dx-top-cta{ margin-top:14px; font-size:13.5px; font-weight:600; }
+.dx-top-cta a{ color:var(--ub); text-decoration:underline; text-underline-offset:3px; }
+.dx-top-cta a:hover{ background:var(--lime); }
 .dx-lect{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
 .dx-lect strong{ color:var(--ub); }
 .dx-res{ margin-top:20px; border:1px solid var(--line); background:#fff; padding:clamp(24px,4vw,40px); }
@@ -2068,7 +2071,8 @@ nav.primary a.cta-dx::after{ display:none; }
       h += '<p class="dx-read" style="margin-top:14px">Tus respuestas indican que ningún sistema aplica en la etapa actual de la empresa, por lo que no es posible calcular un porcentaje.</p>';
     } else {
       h += '<div class="dx-global"><b>' + g.pct + '%</b><span class="dx-badge" style="background:'+g.banda.color+';color:'+g.banda.texto+'">'+esc(g.banda.etiqueta)+'</span></div>' +
-           '<p class="dx-read">' + esc(g.banda.lectura) + '</p>';
+           '<p class="dx-read">' + esc(g.banda.lectura) + '</p>' +
+           '<p class="dx-top-cta"><a href="' + esc(AGENDA) + '" target="_blank" rel="noopener">Agenda una sesión con UB para revisar estos resultados →</a></p>';
     }
     h += '<div class="dx-sys-list">';
     DX.sistemas.forEach(function(s){
