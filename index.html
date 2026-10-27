@@ -116,6 +116,7 @@ header.nav.scrolled{ background:rgba(251,250,247,.94); backdrop-filter:blur(10px
 .logo-lockup img{ height:30px; width:auto; }
 .logo-lockup .lname{ font-family:var(--font-display); font-weight:700; font-size:16px; letter-spacing:.01em; color:var(--ub); white-space:nowrap; }
 .on-dark-page .logo-lockup .lname{ color:#fff; }
+header.nav.scrolled .logo-lockup .lname{ color:var(--ub); }
 
 nav.primary{ display:flex; align-items:center; gap:26px; flex-wrap:nowrap; }
 nav.primary a{ font-size:13px; font-weight:500; white-space:nowrap; position:relative; padding:4px 0; color:var(--ink); cursor:pointer; }
@@ -533,6 +534,72 @@ footer .col a:hover{ color:var(--lime); }
 .skip-link{ position:absolute; left:-999px; top:0; background:var(--ub); color:#fff; padding:10px 16px; z-index:1000; }
 .skip-link:focus{ left:10px; top:10px; }
 :focus-visible{ outline:2px solid var(--ub); outline-offset:3px; }
+
+/* ---------------- DIAGNÓSTICO (test interactivo) ---------------- */
+.dx{ max-width:760px; margin:0 auto; }
+.dx-prog{ margin-bottom:26px; }
+.dx-bar{ height:4px; background:var(--line); }
+.dx-bar i{ display:block; height:100%; background:var(--ub); transition:width .4s var(--ease); }
+.dx-prog-l{ margin-top:10px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
+.dx-card{ border:1px solid var(--line); background:#fff; padding:clamp(24px,4vw,44px); }
+.dx-card:focus, .dx-title:focus{ outline:none; }
+.dx-sys-tag{ font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ub); }
+.dx-sys-desc{ font-size:13px; color:var(--ink-soft); margin-top:4px; }
+.dx-title{ font-family:var(--font-display); font-weight:600; font-size:clamp(20px,2.6vw,27px); line-height:1.25; color:var(--ink); margin:14px 0 22px; letter-spacing:-.01em; }
+.dx-opt{ display:flex; gap:14px; align-items:flex-start; padding:16px 18px; border:1px solid var(--line); margin-top:10px; cursor:pointer; font-size:15px; line-height:1.45; transition:border-color .25s var(--ease), background .25s var(--ease); background:#fff; }
+.dx-opt:hover{ border-color:var(--ub); }
+.dx-opt.sel{ border-color:var(--ub); background:var(--off-white); }
+.dx-opt input{ margin-top:3px; accent-color:var(--ub); width:16px; height:16px; flex-shrink:0; }
+.dx-opt:focus-within{ outline:2px solid var(--ub); outline-offset:2px; }
+.dx-fields{ display:grid; grid-template-columns:1fr 1fr; gap:18px 22px; margin-top:6px; }
+.dx-field{ display:flex; flex-direction:column; gap:7px; min-width:0; }
+.dx-field.full{ grid-column:1/-1; }
+.dx-field label, .dx-legend{ font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ub); }
+.dx-field input[type=text], .dx-field input[type=email], .dx-field textarea, .dx-otro{ font:inherit; font-size:15px; padding:13px 14px; border:1px solid rgba(18,24,29,.28); background:#fff; color:var(--ink); width:100%; border-radius:0; }
+.dx-field textarea{ min-height:92px; resize:vertical; }
+.dx-field input:focus, .dx-field textarea:focus, .dx-otro:focus{ outline:2px solid var(--ub); outline-offset:1px; border-color:var(--ub); }
+.dx-group{ border:0; margin:0 0 30px; min-width:0; }
+.dx-group .dx-legend{ display:block; margin-bottom:6px; font-size:14px; text-transform:none; letter-spacing:0; color:var(--ink); font-family:var(--font-display); font-weight:600; }
+.dx-otro{ margin:8px 0 0 30px; width:calc(100% - 30px); }
+.dx-check{ display:flex; gap:12px; align-items:flex-start; font-size:13px; color:var(--ink-soft); margin-top:22px; line-height:1.5; }
+.dx-check input{ margin-top:3px; accent-color:var(--ub); width:16px; height:16px; flex-shrink:0; }
+.dx-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.dx-err{ color:#B93A32; font-size:13.5px; font-weight:600; margin-top:16px; min-height:1em; }
+.dx-nav{ display:flex; justify-content:space-between; align-items:center; gap:14px; margin-top:26px; flex-wrap:wrap; }
+.dx-note{ font-size:12.5px; color:var(--ink-soft); margin-top:16px; }
+.dx-badge{ display:inline-block; font-size:12px; font-weight:700; letter-spacing:.04em; padding:5px 12px; white-space:nowrap; }
+.dx-global{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin:10px 0 12px; }
+.dx-global b{ font-family:var(--font-display); font-size:clamp(54px,9vw,84px); line-height:1; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; }
+.dx-read{ color:var(--ink-soft); font-size:15.5px; max-width:60ch; }
+.dx-sys-list{ margin-top:32px; border-top:1px solid var(--line); }
+.dx-sys{ padding:20px 0; border-bottom:1px solid var(--line); }
+.dx-sys-h{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; }
+.dx-sys-h strong{ font-family:var(--font-display); font-size:17px; }
+.dx-sys-h span.pct{ font-family:var(--font-display); font-weight:700; font-size:22px; font-variant-numeric:tabular-nums; }
+.dx-meter{ height:10px; background:#E3E6E8; margin:10px 0 12px; }
+.dx-meter i{ display:block; height:100%; transition:width .9s var(--ease); }
+.dx-sys p{ font-size:14px; color:var(--ink-soft); max-width:62ch; }
+.dx-h3{ font-family:var(--font-display); font-weight:700; font-size:20px; margin:38px 0 6px; color:var(--ub); }
+.dx-prio{ counter-reset:p; margin-top:12px; }
+.dx-prio li{ counter-increment:p; display:grid; grid-template-columns:34px 1fr; gap:6px 14px; padding:16px 0; border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.5; }
+.dx-prio li::before{ content:counter(p); font-family:var(--font-display); font-weight:800; font-size:12px; color:var(--lime); background:var(--ub); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.dx-prio small{ display:block; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; margin-top:3px; }
+.dx-more{ margin-top:22px; border:1px solid var(--line); }
+.dx-more summary{ cursor:pointer; padding:16px 18px; font-weight:600; font-size:14px; color:var(--ub); }
+.dx-more summary:focus-visible{ outline:2px solid var(--ub); outline-offset:-2px; }
+.dx-more-body{ padding:0 18px 18px; font-size:14px; }
+.dx-more-body h4{ font-family:var(--font-display); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ub); margin:18px 0 6px; }
+.dx-more-body li{ padding:7px 0 7px 16px; position:relative; color:var(--ink-soft); line-height:1.5; }
+.dx-more-body li::before{ content:''; position:absolute; left:0; top:16px; width:6px; height:1.5px; background:var(--ub); }
+.dx-envio{ margin-top:20px; padding:18px 22px; border:1px solid var(--line); background:var(--off-white); font-size:14.5px; display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.dx-envio.ok{ border-color:#23774A; }
+.dx-envio.error{ border-color:#B93A32; }
+.dx-envio .btn{ padding:11px 20px; }
+.dx-cta{ margin-top:20px; background:var(--ub-dark); color:#fff; padding:clamp(26px,4vw,44px); }
+.dx-cta h3{ font-family:var(--font-display); font-size:clamp(22px,3vw,32px); color:#fff; line-height:1.15; }
+.dx-cta p{ color:rgba(255,255,255,.78); margin:14px 0 24px; max-width:56ch; font-size:15.5px; }
+.dx-restart{ margin-top:22px; background:none; border:none; color:var(--ink-soft); font-size:13px; text-decoration:underline; text-underline-offset:3px; padding:6px 0; }
+@media (max-width:640px){ .dx-fields{ grid-template-columns:1fr; } .dx-nav .btn{ width:100%; justify-content:center; } }
 </style>
 
 <a href="#top" class="skip-link">Saltar al contenido</a>
@@ -560,6 +627,7 @@ footer .col a:hover{ color:var(--lime); }
   <a href="#equipo" data-route="equipo">Equipo</a>
   <a href="#perspectivas" data-route="perspectivas">Perspectivas</a>
   <a href="#actualidad" data-route="actualidad">Actualidad</a>
+  <a href="#diagnostico" data-route="diagnostico">Diagnóstico</a>
   <a href="#contacto" class="cta" data-route="contacto">Hablemos de tu empresa →</a>
 </div>
 
@@ -811,12 +879,12 @@ footer .col a:hover{ color:var(--lime); }
 </section>
 
 <!-- DIAGNOSTICO -->
-<section class="section-pad bg-paper section-divider diag" id="diagnostico">
+<section class="section-pad bg-paper section-divider diag" id="diagnostico-home">
   <div class="wrap">
     <span class="eyebrow" data-reveal><span class="idx">11</span> Diagnóstico de madurez</span>
     <h2 class="h-lg" data-reveal style="--d:80ms">¿QUÉ TAN INSTITUCIONALIZADA<br>ESTÁ TU EMPRESA?</h2>
-    <p class="lede" data-reveal style="--d:140ms; margin:22px auto 0;">Estamos desarrollando una herramienta de autodiagnóstico para ubicar en qué etapa de institucionalización se encuentra tu empresa. <span class="pending">Herramienta en desarrollo</span> — mientras la preparamos, la forma más rápida de obtenerlo es conversarlo directamente con nosotros.</p>
-    <a href="#contacto" class="btn btn-primary" data-reveal style="--d:200ms">Hablemos de tu empresa</a>
+    <p class="lede" data-reveal style="--d:140ms; margin:22px auto 0;">Responde 20 preguntas en unos 8 minutos y conoce al instante en qué etapa de institucionalización está tu empresa, con recomendaciones por sistema. Te enviamos el detalle en PDF a tu correo y puedes agendar una sesión con nosotros.</p>
+    <a href="#diagnostico" class="btn btn-primary" data-reveal style="--d:200ms">Hacer el diagnóstico</a>
   </div>
 </section>
 
@@ -1559,6 +1627,27 @@ footer .col a:hover{ color:var(--lime); }
 </section>
 <!-- ================= /CONTACTO ================= -->
 
+<!-- ================= DIAGNOSTICO (test interactivo) ================= -->
+<section class="view" id="view-diagnostico">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow on-dark kicker">Diagnóstico de madurez</span>
+    <h1 class="h-xl" style="font-size:clamp(27px,6.2vw,78px);">¿QUÉ TAN INSTITUCIONALIZADA<br>ESTÁ TU EMPRESA?</h1>
+    <p class="lede" style="margin-top:20px;">20 preguntas, unos 8 minutos. Verás tu resultado al instante y te enviamos por correo un PDF con recomendaciones por sistema.</p>
+    <p class="crumb"><a href="#top">Inicio</a> / Diagnóstico</p>
+  </div>
+</section>
+
+<section class="section-pad-sm bg-white" style="border-bottom:none;">
+  <div class="wrap">
+    <div id="dxApp" class="dx"></div>
+  </div>
+</section>
+
+</section>
+<!-- ================= /DIAGNOSTICO ================= -->
+
 </main>
 
 <footer>
@@ -1574,6 +1663,7 @@ footer .col a:hover{ color:var(--lime); }
       <a href="#equipo">Equipo</a>
       <a href="#perspectivas">Perspectivas</a>
       <a href="#actualidad">Actualidad</a>
+      <a href="#diagnostico">Diagnóstico</a>
       <a href="#contacto">Contacto</a>
     </div>
     <div class="col">
@@ -1727,7 +1817,7 @@ footer .col a:hover{ color:var(--lime); }
   /* ---------------- HASH ROUTER (single-page, multi-view) ---------------- */
   var ROUTES = {
     '': 'home', 'top': 'home', 'resolver':'home', 'dependencia':'home', 'institucionalizar':'home',
-    'acompanar':'home', 'amor':'home', 'modelo-teaser':'home', 'casos-teaser':'home', 'diagnostico':'home', 'home-cta':'home',
+    'acompanar':'home', 'amor':'home', 'modelo-teaser':'home', 'casos-teaser':'home', 'diagnostico':'diagnostico', 'diagnostico-home':'home', 'home-cta':'home',
     'metodologia':'metodologia','generaciones':'metodologia','institucionalizacion':'metodologia',
     'modelo':'metodologia','sistema-patrimonial':'metodologia','sistema-empresarial':'metodologia',
     'sistema-operativo':'metodologia','como':'metodologia','esencia':'metodologia',
@@ -1772,6 +1862,369 @@ footer .col a:hover{ color:var(--lime); }
   window.addEventListener('hashchange', route);
   route();
 
+})();
+</script>
+
+<!-- Contenido del diagnóstico: se genera con diagnostico/build.py desde diagnostico/datos.json. No editar a mano. -->
+<script>var DX=/*DX:START*/{"sistemas":[{"clave":"Patrimonial","descripcion":"Cómo se gobierna la familia propietaria: reglas, acuerdos y protección del patrimonio."},{"clave":"Empresarial","descripcion":"Cómo se gobierna la empresa: Consejo, comités de control y separación de roles."},{"clave":"Operativo","descripcion":"Cómo se dirige el día a día: dirección, estructura, procesos y toma de decisiones."}],"bandas":[{"hasta":33,"etiqueta":"Requiere atención urgente","color":"#B93A32","texto":"#FFFFFF","lectura":"Hay carencias importantes: faltan reglas, órganos o acuerdos formales que protejan a la familia y a la empresa."},{"hasta":66,"etiqueta":"En desarrollo","color":"#D9A21B","texto":"#2A2000","lectura":"Hay avances y buenas intenciones, pero buena parte de lo que funciona es informal o no está documentado."},{"hasta":100,"etiqueta":"Sólido","color":"#23774A","texto":"#FFFFFF","lectura":"Existen bases formales sólidas; el reto es mantenerlas vivas y seguir mejorándolas."}],"resumen":{"Patrimonial":["Las reglas de la familia propietaria casi no están formalizadas. La prioridad es dar orden al gobierno familiar: asamblea, consejo de familia y protocolo.","Hay bases y acuerdos informales. El siguiente paso es documentarlos y darles reglas de funcionamiento para que resistan el paso de las generaciones.","El gobierno patrimonial está bien establecido. El reto es mantenerlo vivo: revisar el protocolo con regularidad y preparar a la siguiente generación."],"Empresarial":["Falta contrapeso dentro de la empresa. La prioridad es instalar el Consejo de Administración y los comités de control.","Existen órganos de gobierno, pero con funcionamiento parcial o informal. Conviene fortalecerlos con facultades por escrito, manuales y consejeros independientes.","El gobierno corporativo es sólido. El reto es evaluar su desempeño con periodicidad y cuidar la independencia del Consejo."],"Operativo":["La operación depende más de las personas que de la estructura. La prioridad es definir roles, organigrama, comités y un plan estratégico.","La operación funciona, pero parte de lo que funciona no está documentado. Formalizar procesos y comités reduce la dependencia de personas clave.","La estructura operativa es sólida. El reto es sostenerla con seguimiento de indicadores y desarrollo de talento."]},"perfil":[{"clave":"PF_FAMILIA","tipo":"opcion","requerido":true,"titulo":"¿Eres parte de la familia propietaria?","opciones":["Sí, soy de la familia propietaria y trabajo en la empresa","Sí, soy de la familia propietaria, pero no trabajo en la empresa","No soy de la familia (directivo, colaborador o asesor)"]},{"clave":"PF_GENERACION","tipo":"opcion","requerido":true,"titulo":"¿A qué generación de la familia perteneces?","opciones":["Primera generación (fundador/a)","Segunda generación","Tercera generación","Cuarta generación o más","No soy de la familia propietaria"]},{"clave":"PF_ANTIGUEDAD","tipo":"opcion","requerido":true,"titulo":"¿Cuántos años llevas en la empresa o vinculado/a a ella?","opciones":["Menos de 2 años","De 2 a 5 años","De 6 a 10 años","De 11 a 20 años","Más de 20 años"]},{"clave":"PF_MOTIVO","tipo":"opcion","requerido":true,"otra":true,"titulo":"¿Cuál es hoy tu principal motivo para buscar institucionalizar la empresa?","opciones":["Preparar la sucesión o el relevo generacional","Evitar o resolver conflictos dentro de la familia","Ordenar la relación entre familia y empresa (reglas, roles, sueldos)","Profesionalizar la dirección y la operación","Proteger el patrimonio familiar","Crecer o abrirme a nuevos socios, inversionistas o financiamiento"]},{"clave":"PF_PREOCUPACION","tipo":"parrafo","requerido":false,"titulo":"En tus palabras: ¿qué es lo que más te preocupa hoy de tu empresa y de tu familia?"}],"apertura":[["A1","¿Qué pasaría con tu empresa si mañana tú no estuvieras al frente?"],["A2","¿Tu familia tiene reglas claras para participar en la empresa o todo se resuelve sobre la marcha?"],["A3","¿Tienes claro de quién depende el futuro del negocio?"],["A4","¿Tienes un plan claro de sucesión o solo esperas que el tiempo lo resuelva?"],["A5","¿Qué legado quieres dejar: una empresa dependiente de ti o una organización que trascienda generaciones?"]],"preguntas":[{"clave":"P1","sistema":"Patrimonial","titulo":"¿Los accionistas se reúnen de manera formal y periódica para tomar decisiones de la empresa?","opciones":["Sí, nos reunimos de forma regular, con fechas fijas y todo se documenta","Nos reunimos, pero sin orden fijo, sin actas, o solo cuando surge algo urgente","No tenemos un espacio así; las decisiones se toman de manera informal","No aplica en esta etapa (ej. hay un solo accionista)"],"rec":["Instalar una Asamblea de Accionistas con calendario anual, orden del día y actas firmadas, para que las decisiones de propiedad dejen de tomarse de manera informal.","Formalizar la Asamblea de Accionistas: fechas fijas durante el año, convocatoria, orden del día y acta de cada sesión."]},{"clave":"P2","sistema":"Patrimonial","titulo":"¿Existe un espacio formal donde la familia dueña hable temas de familia y patrimonio, distinto de las juntas de negocio?","opciones":["Sí, con reglas claras, representación de todas las ramas de la familia y reuniones periódicas","Existe de manera informal (reuniones familiares sin estructura) o sin representar a todas las ramas","No existe ningún espacio así","No aplica en esta etapa"],"rec":["Crear un Consejo de Familia, separado de la Asamblea y del Consejo de Administración, donde las ramas de la familia hablen de patrimonio, valores y convivencia.","Dar estructura al espacio familiar: reglas de integración, representación de todas las ramas y reuniones periódicas con agenda."]},{"clave":"P3","sistema":"Patrimonial","titulo":"¿Existe un documento firmado que establezca las reglas de convivencia entre familia y empresa?","opciones":["Sí, firmado y cubre los temas clave (historia, valores, gobierno, entradas/salidas, patrimonio)","Existe un borrador o solo acuerdos verbales, sin firmar","No existe ningún documento ni acuerdo","No aplica en esta etapa"],"rec":["Elaborar un Protocolo Familiar firmado que defina historia, valores, gobierno, reglas de entrada y salida, y manejo del patrimonio.","Convertir los acuerdos verbales o el borrador en un Protocolo Familiar firmado, y revisarlo de forma periódica."]},{"clave":"P4","sistema":"Patrimonial","titulo":"¿Existen reglas escritas que protejan la propiedad de la empresa si algo le pasa a un accionista, o si las acciones se van repartiendo entre más personas con el paso de las generaciones?","opciones":["Sí, documentadas en un acuerdo de accionistas","Se conocen de manera informal, sin documentar","No se ha abordado el tema"],"rec":["Abordar la protección de la propiedad: diseñar un Acuerdo de Accionistas con mecanismos de transmisión y protección de acciones antes de que ocurra una eventualidad.","Documentar en un Acuerdo de Accionistas las reglas que hoy se conocen de manera informal (transmisión, venta, fallecimiento, entrada de nuevos accionistas)."]},{"clave":"P5","sistema":"Patrimonial","titulo":"¿Los accionistas que NO trabajan en la operación del negocio piden o reciben puestos y sueldos solo por ser dueños?","opciones":["No; ser accionista no da derecho automático a un puesto","Ocurre ocasionalmente y genera tensión","Es una práctica común, sin importar desempeño o preparación"],"rec":["Establecer que ser accionista no da derecho automático a un puesto ni a un sueldo, y definir criterios de ingreso basados en preparación y desempeño.","Poner por escrito los criterios para que un familiar ingrese, permanezca y sea remunerado en la empresa, y aplicarlos sin excepciones."]},{"clave":"P6","sistema":"Patrimonial","titulo":"¿Los accionistas tienen claro y coinciden en para qué existe la empresa, más allá de generar utilidades?","opciones":["Sí, con un ejercicio formal documentado","Existe una idea compartida, pero no está formalizada","No se ha hablado del tema, o hay ideas muy distintas entre accionistas"],"rec":["Realizar un ejercicio formal de propósito y visión compartida entre los accionistas, para alinear para qué existe la empresa.","Formalizar la idea compartida en un documento de propósito, visión y valores que los accionistas conozcan y firmen."]},{"clave":"P7","sistema":"Empresarial","titulo":"¿La empresa cuenta con un Consejo de Administración o Consultivo instalado, más allá de la operación diaria?","opciones":["Sí, formal, con consejeros independientes y agenda de trabajo","Existe, pero solo con familiares o de manera informal","No existe","No aplica en esta etapa"],"rec":["Instalar un Consejo de Administración (o un Consejo Consultivo como primer paso), con agenda de trabajo y calendario de sesiones.","Fortalecer el Consejo: incorporar consejeros independientes, definir una agenda anual y redactar un manual de funcionamiento."]},{"clave":"P8","sistema":"Empresarial","titulo":"¿Ese Consejo tiene realmente la facultad de nombrar o remover a la alta dirección de la empresa?","opciones":["Sí, es una facultad reconocida y que se ha ejercido","Existe en el papel, pero no se ha usado o se cuestiona","No la tiene; esa decisión la toma únicamente el fundador/dueño","No aplica en esta etapa (no existe un Consejo)"],"rec":["Dotar al Consejo, por escrito, de la facultad de nombrar y remover a la alta dirección, y acordar con el fundador cómo se ejerce.","Respaldar la facultad del Consejo sobre la alta dirección: documentarla en estatutos o en el manual del Consejo y definir un proceso de evaluación."]},{"clave":"P9","sistema":"Empresarial","titulo":"¿Existen comités que funcionen como contrapeso a la Dirección General (por ejemplo, de auditoría, temas fiscales o remuneraciones)?","opciones":["Sí, instalados y funcionando, con manual de operación","Existe al menos uno, los demás se manejan caso por caso","No existe ninguno","No aplica en esta etapa"],"rec":["Instalar comités de control (auditoría, temas fiscales, remuneraciones) que funcionen como contrapeso de la Dirección General.","Instalar de forma ordenada los comités que faltan y documentar el manual de operación de cada uno."]},{"clave":"P10","sistema":"Empresarial","titulo":"¿Existe un comité que defina, con base en estudios de mercado, los sueldos y bonos de familiares y directivos?","opciones":["Sí, reporta al Consejo y documenta cada decisión","Existe un criterio informal, sin comité ni actas","La Dirección General decide los sueldos de familiares sin ningún contrapeso","No aplica en esta etapa (no existen comités de control)"],"rec":["Crear un comité de remuneraciones que defina sueldos y bonos de familiares y directivos con base en estudios de mercado y que reporte al Consejo.","Formalizar el criterio actual de remuneraciones en un comité con actas y reporte al Consejo."]},{"clave":"P11","sistema":"Empresarial","titulo":"¿Existen comités específicos para decidir sobre crecimiento o expansión del negocio (nuevas unidades, nuevos socios, franquicias)?","opciones":["Sí, con facultades documentadas","Existe al menos uno, pero sin facultades por escrito","No existen","No aplica en esta etapa"],"rec":["Crear comités para las decisiones de crecimiento (nuevas unidades, nuevos socios, franquicias), con facultades claras.","Poner por escrito las facultades de los comités de crecimiento que ya existen."]},{"clave":"P12","sistema":"Empresarial","titulo":"¿Los miembros de la familia distinguen con claridad cuándo están hablando como accionistas, como consejeros o como colaboradores de la empresa?","opciones":["Sí, de manera consistente","La mayoría de las veces, aunque a veces se mezclan","No hay distinción; es fuente constante de conflicto"],"rec":["Definir los tres roles (accionista, consejero y colaborador) y establecer un foro y reglas distintas para cada uno.","Reforzar la separación de roles con reglas de conducta y foros diferenciados para cada uno."]},{"clave":"P13","sistema":"Operativo","titulo":"Si la persona que dirige la empresa hoy dejara de estar presente por un mes, ¿la operación seguiría funcionando con normalidad?","opciones":["Sí, las áreas tienen autonomía real para decidir","Se nota su ausencia; muchas decisiones dependen de que regrese","La operación se detendría; todo depende de esa persona"],"rec":["Reducir la dependencia de la persona que dirige: delegar decisiones con facultades documentadas y preparar una sucesión operativa.","Documentar qué decisiones dependen hoy de una sola persona y transferirlas de forma gradual a las áreas, con límites de autoridad claros."]},{"clave":"P14","sistema":"Operativo","titulo":"¿Existe un Comité de Dirección formalmente constituido, con facultades documentadas?","opciones":["Sí, con un documento claro de funcionamiento","Hay reuniones de dirección regulares, pero sin documento formal","No existe","No aplica en esta etapa"],"rec":["Constituir un Comité de Dirección con integrantes, facultades y periodicidad definidos.","Formalizar el Comité de Dirección en un documento que establezca integrantes, facultades y calendario."]},{"clave":"P15","sistema":"Operativo","titulo":"¿La empresa cuenta con un organigrama formal, actualizado y que todos conocen?","opciones":["Sí, documentado, actualizado y conocido por todos","Existe, pero desactualizado o poco comunicado","No existe"],"rec":["Elaborar un organigrama formal con funciones y líneas de reporte, y comunicarlo a toda la organización.","Actualizar el organigrama, comunicarlo a todos y nombrar a un responsable de mantenerlo vigente."]},{"clave":"P16","sistema":"Operativo","titulo":"¿Existe un Código de Ética formal, documentado y comunicado a todos los colaboradores?","opciones":["Sí, documentado, comunicado y aplicado","Existe el documento, pero poco se comunica o aplica","No existe"],"rec":["Redactar un Código de Ética y comunicarlo a todos los colaboradores.","Difundir y aplicar el Código de Ética existente: inducción, capacitación y un mecanismo para atender casos."]},{"clave":"P17","sistema":"Operativo","titulo":"¿Existen comités operativos (de ventas, producción, finanzas, etc.) con propósito y periodicidad definidos?","opciones":["Sí, con un mapa de comités documentado","Hay reuniones periódicas, sin formalizarse como comité","No existen o son esporádicas","No aplica en esta etapa"],"rec":["Definir un mapa de comités operativos (ventas, producción, finanzas, etc.) con propósito y periodicidad.","Formalizar las reuniones periódicas como comités, con propósito, integrantes y minuta."]},{"clave":"P18","sistema":"Operativo","titulo":"¿Existe un calendario institucional claro de quién se reúne, cuándo y para qué?","opciones":["Sí, documentado y se respeta","Existe de manera informal o es inconsistente","No existe"],"rec":["Construir un calendario institucional anual de reuniones: quién se reúne, cuándo y para qué.","Documentar el calendario institucional y nombrar a un responsable de darle seguimiento."]},{"clave":"P19","sistema":"Operativo","titulo":"¿Los sueldos se definen con base en un tabulador con referencias de mercado?","opciones":["Sí, actualizado y aplicado","Existe, pero está desactualizado","Se definen de manera discrecional; no existe un tabulador"],"rec":["Crear un tabulador de sueldos con referencias de mercado y reglas claras de aplicación.","Actualizar el tabulador con referencias de mercado vigentes y aplicarlo de manera consistente."]},{"clave":"P20","sistema":"Operativo","titulo":"¿Las decisiones operativas se basan en un plan estratégico aprobado, o principalmente en la intuición de los dueños/directivos?","opciones":["Se basan en un plan estratégico aprobado, con seguimiento de indicadores","Hay una mezcla: algo de plan, pero muchas decisiones siguen siendo intuitivas","La empresa opera solo con base en la intuición de los familiares"],"rec":["Elaborar un plan estratégico con objetivos e indicadores, para que las decisiones dejen de depender de la intuición.","Consolidar el plan estratégico: aprobarlo en el órgano de gobierno y darle seguimiento con indicadores."]}]}/*DX:END*/;</script>
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById('dxApp');
+  if (!root || !DX) return;
+
+  /* URL de la app web de Apps Script que envía el PDF por correo (ver apps-script/README.md).
+     Mientras esté vacía, el test funciona y muestra resultados, pero el envío por correo falla. */
+  var ENDPOINT = '';
+  var AGENDA = 'https://calendar.app.google/gx4gJDjGpWsMHpJV7';
+
+  var NQ = DX.preguntas.length;
+  var TOTAL = 3 + NQ;
+  var state = nuevo();
+
+  function nuevo(){
+    return { step:'intro', i:0, datos:{nombre:'',empresa:'',puesto:'',correo:'',consent:false},
+             perfil:{}, otro:'', apertura:{}, resp:{}, res:null, envio:'idle', envioMsg:'' };
+  }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function $(id){ return document.getElementById(id); }
+  function sistemaInfo(c){ return DX.sistemas.filter(function(s){ return s.clave === c; })[0]; }
+
+  /* ---------- Puntaje (misma lógica que apps-script/Codigo.gs) ---------- */
+  function banda(p){
+    for (var i=0;i<DX.bandas.length;i++) if (p <= DX.bandas[i].hasta) return DX.bandas[i];
+    return DX.bandas[DX.bandas.length-1];
+  }
+  function puntos(q, idx){ return q.opciones[idx].indexOf('No aplica') === 0 ? null : 2 - idx; }
+  function evaluar(resp){
+    var res = {}, evaluables = [];
+    DX.sistemas.forEach(function(s){
+      var pts = 0, n = 0, pend = [];
+      DX.preguntas.forEach(function(q){
+        if (q.sistema !== s.clave) return;
+        var p = puntos(q, resp[q.clave]);
+        if (p === null) return;
+        pts += p; n++;
+        if (p < 2) pend.push({ sistema:s.clave, clave:q.clave, pts:p, rec:q.rec[p] });
+      });
+      if (!n) { res[s.clave] = { pct:null, banda:null, pend:[] }; return; }
+      var exacto = pts / (n*2) * 100;
+      evaluables.push(exacto);
+      var pct = Math.round(exacto);
+      res[s.clave] = { pct:pct, banda:banda(pct), pend:pend };
+    });
+    if (!evaluables.length) res.Global = { pct:null, banda:null };
+    else {
+      var pg = Math.round(evaluables.reduce(function(a,b){ return a+b; },0) / evaluables.length);
+      res.Global = { pct:pg, banda:banda(pg) };
+    }
+    return res;
+  }
+  function resumen(sistema, b){ return DX.resumen[sistema][DX.bandas.indexOf(b)]; }
+  function prioridades(res){
+    var todas = [];
+    DX.sistemas.forEach(function(s){ res[s.clave].pend.forEach(function(p){ todas.push(p); }); });
+    // Primero lo que no existe (0 pts); a igualdad, el sistema con menor porcentaje.
+    return todas.sort(function(a,b){
+      return (a.pts - b.pts) || (res[a.sistema].pct - res[b.sistema].pct);
+    });
+  }
+
+  /* ---------- Render ---------- */
+  function progreso(){
+    var idx = { datos:0, perfil:1, apertura:2 }[state.step];
+    var n, label;
+    if (state.step === 'q'){ n = 3 + state.i; label = 'Pregunta ' + (state.i+1) + ' de ' + NQ; }
+    else { n = idx; label = 'Paso ' + (idx+1) + ' de 3'; }
+    return '<div class="dx-prog"><div class="dx-bar"><i style="width:' + Math.round(n/TOTAL*100) + '%"></i></div>' +
+           '<p class="dx-prog-l" aria-live="polite">' + label + '</p></div>';
+  }
+  function navBtns(atras, sig, sigTxt){
+    return '<div class="dx-nav">' +
+      (atras ? '<button type="button" class="btn btn-ghost" data-dx="back">← Atrás</button>' : '<span></span>') +
+      (sig ? '<button type="button" class="btn btn-primary" data-dx="next">' + sigTxt + '</button>' : '') + '</div>';
+  }
+
+  function vIntro(){
+    return '<div class="dx-card" tabindex="-1" id="dxFocus">' +
+      '<span class="eyebrow">Mini diagnóstico UB</span>' +
+      '<h2 class="dx-title" style="margin-top:14px">Ubica a tu empresa en los tres sistemas de la Metodología UB.</h2>' +
+      '<p class="dx-read">Evaluaremos el sistema <strong>patrimonial</strong> (familia y propiedad), el <strong>empresarial</strong> (gobierno de la empresa) y el <strong>operativo</strong> (dirección y gestión). No hay respuestas buenas ni malas: elige la que mejor describa la situación actual.</p>' +
+      '<p class="dx-note">Al terminar verás tu resultado en pantalla y recibirás el diagnóstico en PDF por correo. Tus respuestas se usan para preparar tu diagnóstico y para que UB Consultores pueda dar seguimiento.</p>' +
+      '<div class="dx-nav"><span></span><button type="button" class="btn btn-primary" data-dx="start">Comenzar el diagnóstico →</button></div></div>';
+  }
+
+  function campo(id, etiqueta, val, tipo, extra){
+    return '<div class="dx-field"><label for="'+id+'">'+etiqueta+'</label><input type="'+tipo+'" id="'+id+'" value="'+esc(val)+'" '+(extra||'')+'></div>';
+  }
+  function vDatos(){
+    var d = state.datos;
+    return progreso() + '<div class="dx-card"><h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin-top:0">¿A quién enviamos tu diagnóstico?</h2>' +
+      '<div class="dx-fields">' +
+      campo('dx-nombre','Nombre',d.nombre,'text','autocomplete="name" maxlength="120"') +
+      campo('dx-empresa','Empresa',d.empresa,'text','autocomplete="organization" maxlength="160"') +
+      campo('dx-puesto','Puesto o cargo',d.puesto,'text','autocomplete="organization-title" maxlength="120"') +
+      campo('dx-correo','Correo electrónico',d.correo,'email','autocomplete="email" maxlength="160"') +
+      '</div>' +
+      '<div class="dx-hp" aria-hidden="true"><label for="dx-web">No llenar este campo</label><input type="text" id="dx-web" tabindex="-1" autocomplete="off"></div>' +
+      '<label class="dx-check"><input type="checkbox" id="dx-consent"' + (d.consent?' checked':'') + '><span>Acepto recibir mi diagnóstico por correo y que UB Consultores utilice estos datos para darme seguimiento.</span></label>' +
+      '<p class="dx-err" id="dxErr" role="alert"></p>' + navBtns(true,true,'Continuar →') + '</div>';
+  }
+
+  function vPerfil(){
+    var h = progreso() + '<div class="dx-card"><h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin-top:0">Cuéntanos sobre ti y tu empresa</h2>' +
+      '<p class="dx-sys-desc" style="margin:-10px 0 24px">Estos datos nos ayudan a interpretar mejor tu diagnóstico.</p>';
+    DX.perfil.forEach(function(p){
+      if (p.tipo === 'parrafo'){
+        h += '<div class="dx-field full dx-group"><label for="dx-'+p.clave+'">'+esc(p.titulo)+' <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink-soft)">(opcional)</span></label>' +
+             '<textarea id="dx-'+p.clave+'" maxlength="1000">'+esc(state.perfil[p.clave]||'')+'</textarea></div>';
+        return;
+      }
+      h += '<fieldset class="dx-group"><legend class="dx-legend">'+esc(p.titulo)+'</legend>';
+      p.opciones.forEach(function(o){
+        var sel = state.perfil[p.clave] === o;
+        h += '<label class="dx-opt'+(sel?' sel':'')+'"><input type="radio" name="'+p.clave+'" value="'+esc(o)+'"'+(sel?' checked':'')+'><span>'+esc(o)+'</span></label>';
+      });
+      if (p.otra){
+        var so = state.perfil[p.clave] === '__otro';
+        h += '<label class="dx-opt'+(so?' sel':'')+'"><input type="radio" name="'+p.clave+'" value="__otro"'+(so?' checked':'')+'><span>Otro</span></label>' +
+             '<input type="text" class="dx-otro" id="dx-otro" maxlength="200" placeholder="Escribe tu motivo" aria-label="Otro motivo" value="'+esc(state.otro)+'">';
+      }
+      h += '</fieldset>';
+    });
+    return h + '<p class="dx-err" id="dxErr" role="alert"></p>' + navBtns(true,true,'Continuar →') + '</div>';
+  }
+
+  function vApertura(){
+    var h = progreso() + '<div class="dx-card"><h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin-top:0">Preguntas de reflexión</h2>' +
+      '<p class="dx-sys-desc" style="margin:-10px 0 24px">No tienen respuesta correcta y son opcionales. Responde con libertad, o continúa sin llenarlas.</p><div class="dx-fields">';
+    DX.apertura.forEach(function(a){
+      h += '<div class="dx-field full"><label for="dx-'+a[0]+'" style="text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink);font-family:var(--font-display)">'+esc(a[1])+'</label>' +
+           '<textarea id="dx-'+a[0]+'" maxlength="1000">'+esc(state.apertura[a[0]]||'')+'</textarea></div>';
+    });
+    return h + '</div>' + navBtns(true,true,'Empezar las preguntas →') + '</div>';
+  }
+
+  function vPregunta(){
+    var q = DX.preguntas[state.i], s = sistemaInfo(q.sistema);
+    var h = progreso() + '<div class="dx-card"><div class="dx-sys-tag">Sistema ' + esc(s.clave) + '</div>' +
+      '<p class="dx-sys-desc">' + esc(s.descripcion) + '</p>' +
+      '<fieldset style="border:0;min-width:0"><legend class="dx-title" id="dxFocus" tabindex="-1">' + esc(q.titulo) + '</legend>';
+    q.opciones.forEach(function(o, k){
+      var sel = state.resp[q.clave] === k;
+      h += '<label class="dx-opt'+(sel?' sel':'')+'"><input type="radio" name="q" value="'+k+'"'+(sel?' checked':'')+'><span>'+esc(o)+'</span></label>';
+    });
+    return h + '</fieldset>' + navBtns(true, state.resp[q.clave] !== undefined, state.i === NQ-1 ? 'Ver mi resultado →' : 'Siguiente →') + '</div>';
+  }
+
+  function vResultado(){
+    var r = state.res, g = r.Global, d = state.datos;
+    var h = '<div class="dx-card"><span class="eyebrow">Tu resultado · ' + esc(d.empresa) + '</span>' +
+      '<h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin:14px 0 0">Resultado global de institucionalización</h2>';
+    if (g.pct === null){
+      h += '<p class="dx-read" style="margin-top:14px">Tus respuestas indican que ningún sistema aplica en la etapa actual de la empresa, por lo que no es posible calcular un porcentaje.</p>';
+    } else {
+      h += '<div class="dx-global"><b>' + g.pct + '%</b><span class="dx-badge" style="background:'+g.banda.color+';color:'+g.banda.texto+'">'+esc(g.banda.etiqueta)+'</span></div>' +
+           '<p class="dx-read">' + esc(g.banda.lectura) + '</p>';
+    }
+    h += '<div class="dx-sys-list">';
+    DX.sistemas.forEach(function(s){
+      var x = r[s.clave];
+      h += '<div class="dx-sys"><div class="dx-sys-h"><strong>Sistema ' + esc(s.clave) + '</strong>' +
+        (x.pct === null ? '<span class="dx-badge" style="background:#E3E6E8;color:#33404A">No evaluable</span>'
+          : '<span class="pct">' + x.pct + '%</span>') + '</div>';
+      if (x.pct !== null){
+        h += '<div class="dx-meter" role="img" aria-label="' + x.pct + ' por ciento"><i style="width:0;background:'+x.banda.color+'" data-w="'+x.pct+'"></i></div>' +
+             '<span class="dx-badge" style="background:'+x.banda.color+';color:'+x.banda.texto+';margin-bottom:10px">'+esc(x.banda.etiqueta)+'</span>' +
+             '<p style="margin-top:8px">' + esc(resumen(s.clave, x.banda)) + '</p>';
+      } else {
+        h += '<p style="margin-top:8px">Las respuestas indican que este sistema no aplica en la etapa actual.</p>';
+      }
+      h += '</div>';
+    });
+    h += '</div>';
+
+    var pr = prioridades(r);
+    if (pr.length){
+      h += '<h3 class="dx-h3">Por dónde empezar</h3><ol class="dx-prio">';
+      pr.slice(0,5).forEach(function(p){
+        h += '<li><div>' + esc(p.rec) + '<small>Sistema ' + esc(p.sistema) + (p.pts === 0 ? ' · Prioridad alta' : ' · Por formalizar') + '</small></div></li>';
+      });
+      h += '</ol>';
+      if (pr.length > 5){
+        h += '<details class="dx-more"><summary>Ver las ' + pr.length + ' recomendaciones por sistema</summary><div class="dx-more-body">';
+        DX.sistemas.forEach(function(s){
+          if (!r[s.clave].pend.length) return;
+          h += '<h4>Sistema ' + esc(s.clave) + '</h4><ul>';
+          r[s.clave].pend.forEach(function(p){ h += '<li>' + esc(p.rec) + '</li>'; });
+          h += '</ul>';
+        });
+        h += '</div></details>';
+      }
+    } else if (g.pct !== null){
+      h += '<h3 class="dx-h3">Por dónde empezar</h3><p class="dx-read">No detectamos acciones pendientes. Mantén vivas las prácticas actuales y revísalas con periodicidad.</p>';
+    }
+    h += '</div>' +
+      '<div class="dx-envio" id="dxEnvio" role="status" aria-live="polite"></div>' +
+      '<div class="dx-cta on-dark"><span class="eyebrow on-dark">Siguiente paso</span>' +
+      '<h3 style="margin-top:12px">Agenda tu Diagnóstico Profundo con UB.</h3>' +
+      '<p>Este resultado se basa solo en tus respuestas. En una sesión con nosotros revisamos estos hallazgos contigo y definimos por dónde empezar en ' + esc(d.empresa) + '.</p>' +
+      '<a class="btn btn-lime" href="' + esc(AGENDA) + '" target="_blank" rel="noopener">Agendar mi sesión →</a></div>' +
+      '<button type="button" class="dx-restart" data-dx="restart">Volver a hacer el diagnóstico</button>';
+    return h;
+  }
+
+  function pintarEnvio(){
+    var el = $('dxEnvio'); if (!el) return;
+    var c = esc(state.datos.correo);
+    el.className = 'dx-envio' + (state.envio === 'ok' ? ' ok' : state.envio === 'error' ? ' error' : '');
+    if (state.envio === 'enviando') el.innerHTML = '<span>Enviando tu diagnóstico en PDF a <strong>' + c + '</strong>…</span>';
+    else if (state.envio === 'ok') el.innerHTML = '<span>Listo: enviamos tu diagnóstico en PDF, con recomendaciones, a <strong>' + c + '</strong>. Si no lo ves en unos minutos, revisa tu carpeta de spam.</span>';
+    else if (state.envio === 'error') el.innerHTML = '<span>' + esc(state.envioMsg || 'No pudimos enviar el PDF a tu correo.') + ' Tu resultado sigue disponible aquí.</span><button type="button" class="btn btn-ghost" data-dx="retry">Reintentar envío</button>';
+    else el.innerHTML = '';
+  }
+
+  function render(enfocar){
+    var v = { intro:vIntro, datos:vDatos, perfil:vPerfil, apertura:vApertura, q:vPregunta, result:vResultado }[state.step];
+    root.innerHTML = v();
+    if (state.step === 'result'){
+      pintarEnvio();
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        root.querySelectorAll('.dx-meter i').forEach(function(i){ i.style.width = i.getAttribute('data-w') + '%'; });
+      }); });
+    }
+    if (enfocar){
+      var f = $('dxFocus');
+      if (f) f.focus({ preventScroll:true });
+      var top = root.getBoundingClientRect().top + window.pageYOffset - 110;
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'auto' });
+    }
+  }
+
+  /* ---------- Lectura de formularios ---------- */
+  function guardar(){
+    var v = function(id){ var e = $(id); return e ? e.value : null; };
+    if (state.step === 'datos'){
+      var d = state.datos;
+      ['nombre','empresa','puesto','correo'].forEach(function(k){ var x = v('dx-'+k); if (x !== null) d[k] = x.replace(/\s+/g,' ').trim(); });
+      var c = $('dx-consent'); if (c) d.consent = c.checked;
+    } else if (state.step === 'perfil'){
+      DX.perfil.forEach(function(p){
+        if (p.tipo === 'parrafo'){ var t = v('dx-'+p.clave); if (t !== null) state.perfil[p.clave] = t.trim(); return; }
+        var m = root.querySelector('input[name="'+p.clave+'"]:checked');
+        if (m) state.perfil[p.clave] = m.value;
+      });
+      var o = v('dx-otro'); if (o !== null) state.otro = o.trim();
+    } else if (state.step === 'apertura'){
+      DX.apertura.forEach(function(a){ var t = v('dx-'+a[0]); if (t !== null) state.apertura[a[0]] = t.trim(); });
+    }
+  }
+  function error(msg){ var e = $('dxErr'); if (e) e.textContent = msg; return false; }
+
+  function validar(){
+    if (state.step === 'datos'){
+      var d = state.datos;
+      if (!d.nombre || !d.empresa || !d.puesto || !d.correo) return error('Completa todos los campos.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.correo)) return error('Escribe un correo electrónico válido.');
+      if (!d.consent) return error('Para enviarte el diagnóstico necesitamos que aceptes el uso de tus datos.');
+    } else if (state.step === 'perfil'){
+      for (var i=0;i<DX.perfil.length;i++){
+        var p = DX.perfil[i];
+        if (p.tipo === 'opcion' && p.requerido && !state.perfil[p.clave]) return error('Responde: ' + p.titulo);
+      }
+      if (state.perfil.PF_MOTIVO === '__otro' && !state.otro) return error('Escribe tu motivo en el campo "Otro".');
+    }
+    return true;
+  }
+
+  /* ---------- Navegación ---------- */
+  function siguiente(){
+    guardar();
+    if (!validar()) return;
+    if (state.step === 'datos') state.step = 'perfil';
+    else if (state.step === 'perfil') state.step = 'apertura';
+    else if (state.step === 'apertura'){ state.step = 'q'; state.i = 0; }
+    else if (state.step === 'q'){
+      if (state.i < NQ-1) state.i++;
+      else { terminar(); return; }
+    }
+    render(true);
+  }
+  function atras(){
+    guardar();
+    if (state.step === 'datos') state.step = 'intro';
+    else if (state.step === 'perfil') state.step = 'datos';
+    else if (state.step === 'apertura') state.step = 'perfil';
+    else if (state.step === 'q'){
+      if (state.i > 0) state.i--; else state.step = 'apertura';
+    }
+    render(true);
+  }
+
+  function terminar(){
+    state.res = evaluar(state.resp);
+    state.step = 'result';
+    render(true);
+    enviar();
+  }
+
+  function enviar(){
+    state.envio = 'enviando'; pintarEnvio();
+    if (!ENDPOINT){
+      console.warn('Diagnóstico: falta configurar ENDPOINT (URL de la app web de Apps Script).');
+      state.envio = 'error'; state.envioMsg = 'El envío por correo no está disponible en este momento.'; pintarEnvio(); return;
+    }
+    var perfil = {};
+    DX.perfil.forEach(function(p){
+      var val = state.perfil[p.clave] || '';
+      perfil[p.clave] = val === '__otro' ? 'Otro: ' + state.otro : val;
+    });
+    var d = state.datos;
+    var cuerpo = JSON.stringify({ nombre:d.nombre, empresa:d.empresa, puesto:d.puesto, correo:d.correo,
+      perfil:perfil, apertura:state.apertura, respuestas:state.resp, website:($('dx-web')||{}).value || '' });
+    // text/plain evita la petición previa (preflight) que Apps Script no responde.
+    fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body:cuerpo })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        state.envio = j && j.ok ? 'ok' : 'error';
+        state.envioMsg = j && j.error ? j.error : '';
+        pintarEnvio();
+      })
+      .catch(function(){ state.envio = 'error'; state.envioMsg = 'No pudimos enviar el PDF a tu correo.'; pintarEnvio(); });
+  }
+
+  /* ---------- Eventos ---------- */
+  root.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-dx]'); if (!b) return;
+    var a = b.getAttribute('data-dx');
+    if (a === 'start'){ state.step = 'datos'; render(true); }
+    else if (a === 'next') siguiente();
+    else if (a === 'back') atras();
+    else if (a === 'retry') enviar();
+    else if (a === 'restart'){ state = nuevo(); render(true); }
+  });
+  root.addEventListener('change', function(ev){
+    var t = ev.target;
+    if (t.type !== 'radio') return;
+    if (state.step === 'q'){
+      var q = DX.preguntas[state.i], i = state.i;
+      state.resp[q.clave] = parseInt(t.value, 10);
+      root.querySelectorAll('.dx-opt').forEach(function(l){ l.classList.toggle('sel', l.contains(t)); });
+      var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setTimeout(function(){ if (state.step === 'q' && state.i === i) siguiente(); }, rm ? 0 : 260);
+    } else if (state.step === 'perfil'){
+      root.querySelectorAll('input[name="'+t.name+'"]').forEach(function(r){ r.closest('.dx-opt').classList.toggle('sel', r.checked); });
+      if (t.name === 'PF_MOTIVO' && t.value === '__otro'){ var o = $('dx-otro'); if (o) o.focus(); }
+    }
+  });
+  root.addEventListener('input', function(ev){
+    if (ev.target.id === 'dx-otro'){
+      var r = root.querySelector('input[name="PF_MOTIVO"][value="__otro"]');
+      if (r && !r.checked){ r.checked = true; r.dispatchEvent(new Event('change', { bubbles:true })); }
+    }
+  });
+
+  render(false);
 })();
 </script>
 
