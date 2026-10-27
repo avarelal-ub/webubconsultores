@@ -149,7 +149,12 @@
    "rec": [
     "Instalar una Asamblea de Accionistas con calendario anual, orden del día y actas firmadas, para que las decisiones de propiedad dejen de tomarse de manera informal.",
     "Formalizar la Asamblea de Accionistas: fechas fijas durante el año, convocatoria, orden del día y acta de cada sesión."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»",
+    "pag": 62,
+    "cita": "Asamblea de accionistas: decide sobre temas clave, como otorgar mandato al consejo de administración, designar consejeros, modificar estatutos, aprobar fusiones, inversiones, venta de activos o distribución de dividendos."
+   }
   },
   {
    "clave": "P2",
@@ -164,7 +169,12 @@
    "rec": [
     "Crear un Consejo de Familia, separado de la Asamblea y del Consejo de Administración, donde las ramas de la familia hablen de patrimonio, valores y convivencia.",
     "Dar estructura al espacio familiar: reglas de integración, representación de todas las ramas y reuniones periódicas con agenda."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»",
+    "pag": 62,
+    "cita": "Consejo de familia: conecta intereses del negocio con los de la familia, ayuda a mantener alineada la visión y crea un espacio de diálogo fuera de la operación."
+   }
   },
   {
    "clave": "P3",
@@ -179,7 +189,12 @@
    "rec": [
     "Elaborar un Protocolo Familiar firmado que defina historia, valores, gobierno, reglas de entrada y salida, y manejo del patrimonio.",
     "Convertir los acuerdos verbales o el borrador en un Protocolo Familiar firmado, y revisarlo de forma periódica."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 2, «Institucionalizar el amor»",
+    "pag": 38,
+    "cita": "El protocolo familiar —o acuerdo de socios— es un marco más estructurado. Establece principios, reglas y compromisos que guían la relación entre la familia (o socios), la propiedad y la empresa."
+   }
   },
   {
    "clave": "P4",
@@ -193,7 +208,12 @@
    "rec": [
     "Abordar la protección de la propiedad: diseñar un Acuerdo de Accionistas con mecanismos de transmisión y protección de acciones antes de que ocurra una eventualidad.",
     "Documentar en un Acuerdo de Accionistas las reglas que hoy se conocen de manera informal (transmisión, venta, fallecimiento, entrada de nuevos accionistas)."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»",
+    "pag": 62,
+    "cita": "¿Existen protocolos que regulan la venta, donación o herencia de acciones?"
+   }
   },
   {
    "clave": "P5",
@@ -207,7 +227,12 @@
    "rec": [
     "Establecer que ser accionista no da derecho automático a un puesto ni a un sueldo, y definir criterios de ingreso basados en preparación y desempeño.",
     "Poner por escrito los criterios para que un familiar ingrese, permanezca y sea remunerado en la empresa, y aplicarlos sin excepciones."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 5, «La participación del accionista: entre el derecho económico y la responsabilidad institucional»",
+    "pag": 109,
+    "cita": "El accionista institucional no gestiona, no presiona, no improvisa. Participa cuando le corresponde, decide lo que le incumbe y confía en los sistemas que gestionan y ejecutan."
+   }
   },
   {
    "clave": "P6",
@@ -221,7 +246,12 @@
    "rec": [
     "Realizar un ejercicio formal de propósito y visión compartida entre los accionistas, para alinear para qué existe la empresa.",
     "Formalizar la idea compartida en un documento de propósito, visión y valores que los accionistas conozcan y firmen."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»",
+    "pag": 62,
+    "cita": "El sistema patrimonial es el encargado de gestionar esa convivencia: la relación entre accionistas, sus reglas y expectativas. Es el espacio donde se alinean visión, propósito, valores, derechos y responsabilidades."
+   }
   },
   {
    "clave": "P7",
@@ -236,7 +266,12 @@
    "rec": [
     "Instalar un Consejo de Administración (o un Consejo Consultivo como primer paso), con agenda de trabajo y calendario de sesiones.",
     "Fortalecer el Consejo: incorporar consejeros independientes, definir una agenda anual y redactar un manual de funcionamiento."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema empresarial: estrategia con respaldo»",
+    "pag": 64,
+    "cita": "Iniciar con consejos pequeños (tres a cinco miembros) para aprender a deliberar sin dispersarse."
+   }
   },
   {
    "clave": "P8",
@@ -251,7 +286,12 @@
    "rec": [
     "Dotar al Consejo, por escrito, de la facultad de nombrar y remover a la alta dirección, y acordar con el fundador cómo se ejerce.",
     "Respaldar la facultad del Consejo sobre la alta dirección: documentarla en estatutos o en el manual del Consejo y definir un proceso de evaluación."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema operativo: donde la estrategia cobra vida»",
+    "pag": 65,
+    "cita": "No existe un espacio formal que supervise y apruebe la gestión del director general."
+   }
   },
   {
    "clave": "P9",
@@ -266,7 +306,12 @@
    "rec": [
     "Instalar comités de control (auditoría, temas fiscales, remuneraciones) que funcionen como contrapeso de la Dirección General.",
     "Instalar de forma ordenada los comités que faltan y documentar el manual de operación de cada uno."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema empresarial: estrategia con respaldo»",
+    "pag": 64,
+    "cita": "Crear comités de control y estratégicos, diseñados según la realidad de la organización."
+   }
   },
   {
    "clave": "P10",
@@ -281,7 +326,12 @@
    "rec": [
     "Crear un comité de remuneraciones que defina sueldos y bonos de familiares y directivos con base en estudios de mercado y que reporte al Consejo.",
     "Formalizar el criterio actual de remuneraciones en un comité con actas y reporte al Consejo."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 2, «Institucionalizar el amor»",
+    "pag": 43,
+    "cita": "Creamos un comité de remuneraciones y diseñamos un sistema simple y eficaz: en los años pares, se compararía nuestra compensación contra el mercado, y en los años nones, se aplicaría una fórmula basada en las cuatro variables financieras más relevantes del negocio."
+   }
   },
   {
    "clave": "P11",
@@ -296,7 +346,12 @@
    "rec": [
     "Crear comités para las decisiones de crecimiento (nuevas unidades, nuevos socios, franquicias), con facultades claras.",
     "Poner por escrito las facultades de los comités de crecimiento que ya existen."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema empresarial: estrategia con respaldo»",
+    "pag": 64,
+    "cita": "¿El consejo ha instaurado comités que den seguimiento a la implementación de estrategias clave?"
+   }
   },
   {
    "clave": "P12",
@@ -310,7 +365,12 @@
    "rec": [
     "Definir los tres roles (accionista, consejero y colaborador) y establecer un foro y reglas distintas para cada uno.",
     "Reforzar la separación de roles con reglas de conducta y foros diferenciados para cada uno."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 2, «Lazos personales vs. roles profesionales»",
+    "pag": 36,
+    "cita": "Crear espacios específicos para los roles profesionales —base de la institucionalización— permite cuidar que las relaciones familiares no se desgasten ni se erosionen."
+   }
   },
   {
    "clave": "P13",
@@ -324,7 +384,12 @@
    "rec": [
     "Reducir la dependencia de la persona que dirige: delegar decisiones con facultades documentadas y preparar una sucesión operativa.",
     "Documentar qué decisiones dependen hoy de una sola persona y transferirlas de forma gradual a las áreas, con límites de autoridad claros."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema operativo: donde la estrategia cobra vida»",
+    "pag": 66,
+    "cita": "Toda la operación depende de una o pocas personas."
+   }
   },
   {
    "clave": "P14",
@@ -339,7 +404,12 @@
    "rec": [
     "Constituir un Comité de Dirección con integrantes, facultades y periodicidad definidos.",
     "Formalizar el Comité de Dirección en un documento que establezca integrantes, facultades y calendario."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema operativo: donde la estrategia cobra vida»",
+    "pag": 66,
+    "cita": "El director general no ha conformado un comité de dirección que lo respalde."
+   }
   },
   {
    "clave": "P15",
@@ -353,7 +423,12 @@
    "rec": [
     "Elaborar un organigrama formal con funciones y líneas de reporte, y comunicarlo a toda la organización.",
     "Actualizar el organigrama, comunicarlo a todos y nombrar a un responsable de mantenerlo vigente."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 9, «Estructuras correctas con las personas idóneas»",
+    "pag": 166,
+    "cita": "El organigrama no debe ser resultado de la historia, sino respuesta a una pregunta fundamental: ¿qué estructura permite ejecutar la estrategia con mayor eficacia?"
+   }
   },
   {
    "clave": "P16",
@@ -367,7 +442,12 @@
    "rec": [
     "Redactar un Código de Ética y comunicarlo a todos los colaboradores.",
     "Difundir y aplicar el Código de Ética existente: inducción, capacitación y un mecanismo para atender casos."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 5, «La cultura que sostiene la institucionalización»",
+    "pag": 110,
+    "cita": "Una cultura sólida sostiene la institucionalización incluso cuando las reglas fallan. Una cultura tóxica, en cambio, puede deshacer cualquier sistema, por muy bien diseñado que esté."
+   }
   },
   {
    "clave": "P17",
@@ -382,7 +462,12 @@
    "rec": [
     "Definir un mapa de comités operativos (ventas, producción, finanzas, etc.) con propósito y periodicidad.",
     "Formalizar las reuniones periódicas como comités, con propósito, integrantes y minuta."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 4, «Sistema operativo: donde la estrategia cobra vida»",
+    "pag": 65,
+    "cita": "El sistema operativo traduce lo acordado en realidad; está compuesto por la dirección general, los comités operativos y los equipos que ejecutan la operación diaria."
+   }
   },
   {
    "clave": "P18",
@@ -396,7 +481,12 @@
    "rec": [
     "Construir un calendario institucional anual de reuniones: quién se reúne, cuándo y para qué.",
     "Documentar el calendario institucional y nombrar a un responsable de darle seguimiento."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 5, «Dirección general: entre la urgencia operativa y la conducción institucional»",
+    "pag": 105,
+    "cita": "El calendario está definido con meses de anticipación. El segundo lunes de cada mes, por ejemplo, se celebra la reunión del comité enfocado en la «eficiencia operativa», con duración máxima de dos horas."
+   }
   },
   {
    "clave": "P19",
@@ -410,7 +500,12 @@
    "rec": [
     "Crear un tabulador de sueldos con referencias de mercado y reglas claras de aplicación.",
     "Actualizar el tabulador con referencias de mercado vigentes y aplicarlo de manera consistente."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 9, «Decisiones justas en la gestión del talento»",
+    "pag": 169,
+    "cita": "Muchas veces, los sistemas de desarrollo humano están desalineados: premian mediocridades, otorgan incrementos sin mérito o toleran faltas graves contra los valores."
+   }
   },
   {
    "clave": "P20",
@@ -424,7 +519,117 @@
    "rec": [
     "Elaborar un plan estratégico con objetivos e indicadores, para que las decisiones dejen de depender de la intuición.",
     "Consolidar el plan estratégico: aprobarlo en el órgano de gobierno y darle seguimiento con indicadores."
-   ]
+   ],
+   "libro": {
+    "ref": "Cap. 5, «Visión de futuro compartida: el mapa estratégico UB»",
+    "pag": 102,
+    "cita": "Incluso, cuando la visión de futuro es compartida, las diferencias en la ejecución o la falta de seguimiento impiden el avance con acciones efectivas."
+   }
+  }
+ ],
+ "libros": [
+  {
+   "id": "tmd",
+   "titulo": "Tu mayor desafío",
+   "autor": "Alfonso Urrea Martín",
+   "anio": "2026",
+   "url": "https://www.amazon.com.mx/Mayor-Desaf%C3%ADo-Alfonso-Urrea-Martin/dp/9689721224",
+   "nota": "Cómo institucionalizar tu empresa para fortalecer su gestión y que trascienda generaciones."
+  },
+  {
+   "id": "vtc",
+   "titulo": "Vivir, Trabajar y Crecer en Familia",
+   "autor": "Alfonso Urrea Martín",
+   "anio": "2023",
+   "url": "https://www.amazon.com.mx/Trabajar-Crecer-Familia-Gesti%C3%B3n-Institucionalizaci%C3%B3n/dp/6078704141",
+   "nota": "Un modelo para la continuidad de la empresa y la unión familiar."
+  }
+ ],
+ "libroCita": "Tu mayor desafío",
+ "semaforo": {
+  "ref": "Cap. 5, «Lo que sí funciona: el semáforo institucional UB»",
+  "pag": 91,
+  "cap6": "Cap. 6, «Diagnóstico emocional y estratégico»",
+  "pag6": 117
+ },
+ "lecturas": {
+  "Patrimonial": [
+   {
+    "ref": "Cap. 2, «La paradoja del amor»",
+    "pag": 23
+   },
+   {
+    "ref": "Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»",
+    "pag": 62
+   },
+   {
+    "ref": "Cap. 10, «Sucesión en el sistema patrimonial»",
+    "pag": 185
+   }
+  ],
+  "Empresarial": [
+   {
+    "ref": "Cap. 4, «Sistema empresarial: estrategia con respaldo»",
+    "pag": 63
+   },
+   {
+    "ref": "Cap. 7, «Cuando los órganos fallan»",
+    "pag": 129
+   },
+   {
+    "ref": "Cap. 10, «Sucesión en el sistema empresarial»",
+    "pag": 187
+   }
+  ],
+  "Operativo": [
+   {
+    "ref": "Cap. 4, «Sistema operativo: donde la estrategia cobra vida»",
+    "pag": 65
+   },
+   {
+    "ref": "Cap. 5, «Dirección general: entre la urgencia operativa y la conducción institucional»",
+    "pag": 105
+   },
+   {
+    "ref": "Cap. 9, «Sistemas con alma»",
+    "pag": 161
+   },
+   {
+    "ref": "Cap. 10, «Sucesión en el sistema operativo»",
+    "pag": 188
+   }
+  ]
+ },
+ "recursos": [
+  {
+   "titulo": "Cuando el río suena",
+   "anio": "2026",
+   "url": "https://www.youtube.com/watch?v=3MZxacnYea4"
+  },
+  {
+   "titulo": "Podcast con Oso Trava",
+   "anio": "2023",
+   "url": "https://www.youtube.com/watch?v=nKB1neAd_2g"
+  },
+  {
+   "titulo": "Entrevista con Andrea Gallardo",
+   "anio": "2025",
+   "url": "https://www.youtube.com/watch?v=IXxHsk3g2Lk"
+  },
+  {
+   "titulo": "GIRA Podcast",
+   "anio": "2025",
+   "url": "https://www.youtube.com/watch?v=uxvwc7D4yeE"
+  },
+  {
+   "titulo": "Entrevista con Jorge Serratos",
+   "anio": "2025",
+   "url": "https://www.youtube.com/watch?v=qMClcDYFDnQ"
+  },
+  {
+   "titulo": "Progresivo Podcast",
+   "anio": "2024",
+   "url": "https://www.youtube.com/watch?v=PKlbqA2wdSs"
   }
  ]
 }

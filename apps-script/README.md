@@ -28,6 +28,13 @@ pega de nuevo `Datos.gs` en Apps Script y vuelve a implementar.
 
 Cada vez que cambies `Codigo.gs` o `Datos.gs` debes crear una **nueva versión** de la implementación; la URL se mantiene.
 
+## Citas del libro
+
+Cada recomendación de `datos.json` lleva un campo `libro` (`ref`, `pag`, `cita`) con un pasaje textual de
+*Tu mayor desafío* (LID Editorial, 2026) y su página impresa. Las 20 citas se verificaron palabra por palabra contra el PDF
+del libro. Si cambias una, conserva el texto exacto del libro y la página. Los enlaces de Amazon y los videos y podcasts
+(`libros`, `recursos`) también están en `datos.json`.
+
 ## Notas
 
 - Los correos salen desde la cuenta de Google que implementa el script (límite de Gmail: ~100 correos al día con cuenta gratuita, ~1,500 con Workspace).

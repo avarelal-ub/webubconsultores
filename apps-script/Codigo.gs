@@ -156,7 +156,7 @@ function evaluar_(respuestas) {
       if (pts === NA) return;
       puntos += pts;
       respondidas++;
-      if (pts < 2) pendientes.push({ clave: p.clave, titulo: p.titulo, pts: pts, rec: p.rec[pts] });
+      if (pts < 2) pendientes.push({ clave: p.clave, titulo: p.titulo, pts: pts, rec: p.rec[pts], libro: p.libro });
     });
     if (respondidas === 0) {
       res[sistema] = { pct: null, banda: null, pendientes: [] };
@@ -182,6 +182,13 @@ function bandaDe_(pct) {
     if (pct <= DX.bandas[i].hasta) return DX.bandas[i];
   }
   return DX.bandas[DX.bandas.length - 1];
+}
+
+/** Pasaje del libro que respalda una recomendación (cita textual y página). */
+function notaLibro_(l) {
+  return '<div style="font-size:10.5px;color:#555;margin-top:4px;padding:5px 8px;background:#f3f5f6">' +
+    '<strong style="color:#06536B">EN EL LIBRO ' + esc_(DX.libroCita).toUpperCase() + '</strong> · ' + esc_(l.ref) + ', p. ' + l.pag +
+    '<br><i>«' + esc_(l.cita) + '»</i></div>';
 }
 
 function resumenDe_(sistema, banda) {
@@ -232,7 +239,7 @@ function construirCorreo_(lead, res) {
     'Hola ' + lead.nombre + ',\n\n' +
     'Gracias por responder el diagnóstico de institucionalización de ' + lead.empresa + '.\n\n' +
     'Resultado global: ' + etiquetaGlobal_(res) + '\n\n' + lineas.join('\n') + '\n\n' +
-    'En el PDF adjunto encontrarás el detalle y las recomendaciones para cada sistema.\n\n' +
+    'En el PDF adjunto encontrarás el detalle y las recomendaciones para cada sistema, con el pasaje del libro "' + DX.libroCita + '" de Alfonso Urrea donde puedes profundizar: ' + DX.libros[0].url + '\n\n' +
     'Este resultado es un pre-diagnóstico basado únicamente en tus respuestas. Un Diagnóstico Profundo con ' + CONFIG.FIRMA +
     ' permite entender a detalle estos hallazgos y construir un plan de acción a la medida de ' + lead.empresa + '. ' + agendaTxt +
     '\n\n' + CONFIG.FIRMA;
@@ -251,7 +258,7 @@ function construirCorreo_(lead, res) {
     '<p>Hola ' + esc_(lead.nombre) + ', gracias por responder. Resultado global: ' +
     (g.pct === null ? 'No evaluable' : '<strong>' + g.pct + '%</strong> ' + insignia_(g.banda)) + '</p>' +
     '<table style="width:100%;border-collapse:collapse">' + filas + '</table>' +
-    '<p style="margin-top:20px">En el <strong>PDF adjunto</strong> encontrarás el detalle y las recomendaciones para cada sistema.</p>' +
+    '<p style="margin-top:20px">En el <strong>PDF adjunto</strong> encontrarás el detalle y las recomendaciones para cada sistema, con el pasaje del libro <a href="' + esc_(DX.libros[0].url) + '"><em>' + esc_(DX.libroCita) + '</em></a> de Alfonso Urrea donde puedes profundizar.</p>' +
     '<p>Este resultado es un pre-diagnóstico basado únicamente en tus respuestas. Un Diagnóstico Profundo con ' + esc_(CONFIG.FIRMA) +
     ' permite entender a detalle estos hallazgos y construir un plan de acción a la medida de ' + esc_(lead.empresa) + '.</p>' +
     '<p style="margin:20px 0"><a href="' + esc_(CONFIG.URL_AGENDA) + '" style="background:#06536B;color:#fff;padding:12px 22px;text-decoration:none;font-weight:bold">Agendar mi sesión</a></p>' +
@@ -293,8 +300,10 @@ function construirPdfHtml_(lead, res) {
           : '<p style="margin-bottom:4px"><strong>Recomendaciones</strong></p>' +
             items.map(function (it) {
               return '<p style="margin:0 0 8px 0;padding-left:10px;border-left:3px solid ' + (it.pts === 0 ? '#B93A32' : '#D9A21B') + '">' +
-                '<span style="font-size:10px;color:#777">' + (it.pts === 0 ? 'PRIORIDAD ALTA' : 'POR FORMALIZAR') + '</span><br>' + esc_(it.rec) + '</p>';
-            }).join(''));
+                '<span style="font-size:10px;color:#777">' + (it.pts === 0 ? 'PRIORIDAD ALTA' : 'POR FORMALIZAR') + '</span><br>' + esc_(it.rec) + notaLibro_(it.libro) + '</p>';
+            }).join('')) +
+        '<p style="font-size:10.5px;color:#555"><strong style="color:#06536B">Para leer en ' + esc_(DX.libroCita) + ':</strong> ' +
+        DX.lecturas[s].map(function (l) { return esc_(l.ref) + ' (p. ' + l.pag + ')'; }).join(' · ') + '</p>';
     }
     return '<h3 style="color:#06536B;margin-bottom:2px;margin-top:22px">Sistema ' + esc_(s) + '</h3>' +
       '<div style="color:#777;font-size:11px;margin-bottom:8px">' + esc_(desc) + '</div>' + cuerpo;
@@ -315,6 +324,17 @@ function construirPdfHtml_(lead, res) {
 
     '<table style="width:100%;border-collapse:collapse">' + resumenSistemas + '</table>' +
     '<h2 style="color:#06536B;font-size:16px;margin-top:26px;margin-bottom:0">Recomendaciones por sistema</h2>' + detalle +
+
+    '<h2 style="color:#06536B;font-size:16px;margin-top:26px;margin-bottom:4px">Para profundizar</h2>' +
+    '<p style="margin-top:0">Las recomendaciones de este reporte se basan en <i>' + esc_(DX.libroCita) + '</i>, de Alfonso Urrea Martín.</p>' +
+    DX.libros.map(function (l) {
+      return '<p style="margin:0 0 6px 0"><strong>' + esc_(l.titulo) + '</strong> (' + esc_(l.anio) + '): ' + esc_(l.nota) + '<br>' +
+        '<span style="color:#06536B">' + esc_(l.url) + '</span></p>';
+    }).join('') +
+    '<p style="margin:10px 0 4px 0"><strong>Videos y podcasts</strong></p>' +
+    DX.recursos.map(function (r) {
+      return '<p style="margin:0 0 4px 0">' + esc_(r.titulo) + ' (' + esc_(r.anio) + ')<br><span style="color:#06536B;font-size:10.5px">' + esc_(r.url) + '</span></p>';
+    }).join('') +
 
     '<div style="margin-top:26px;padding:14px;background:#06536B;color:#fff">' +
     '<strong>Siguiente paso: Diagnóstico Profundo</strong><br>' +
