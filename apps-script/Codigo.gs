@@ -26,6 +26,7 @@ const CONFIG = {
   REPLY_TO: 'ub@ubconsultores.mx',        // A este correo llegan las respuestas de los prospectos
   CORREO_INTERNO: 'ub@ubconsultores.mx',  // Aviso de nuevo lead
   URL_AGENDA: 'https://calendar.app.google/gx4gJDjGpWsMHpJV7', // Agenda del Diagnóstico Profundo
+  PLANTILLA_DOC_ID: '1UVbKvDPSRXbgdJqZg9K_enuqlK7WmA-y9EkYcXSlluc', // Google Doc "UB_Hoja Membretada General" (ver Pdf.gs)
   MINUTOS_ENTRE_ENVIOS: 10                // Un mismo correo no puede pedir otro envío antes de este tiempo
 };
 
@@ -200,9 +201,7 @@ function resumenDe_(sistema, banda) {
 // ===========================================================================
 function enviarCorreoResultado_(lead, res, ss) {
   try {
-    const pdf = Utilities.newBlob(construirPdfHtml_(lead, res), 'text/html', 'diagnostico.html')
-      .getAs('application/pdf')
-      .setName('Diagnostico UB - ' + lead.empresa.replace(/[^\w\- áéíóúñÁÉÍÓÚÑ]/g, '') + '.pdf');
+    const pdf = generarPdf_(lead, res); // con la hoja membretada de UB (Pdf.gs); si falla, usa el diseño de respaldo
     const c = construirCorreo_(lead, res);
     const opciones = {
       to: lead.correo, subject: c.asunto, body: c.texto, htmlBody: c.html,
@@ -267,10 +266,10 @@ function construirCorreo_(lead, res) {
   return { asunto: 'Tu diagnóstico de institucionalización — ' + lead.empresa, texto: texto, html: html };
 }
 
-/** HTML del PDF. Apps Script convierte HTML básico: tablas y estilos en línea, sin CSS moderno. */
+/** PDF de respaldo (solo se usa si falla el PDF con membrete). Apps Script convierte HTML básico: tablas y estilos en línea. */
 function construirPdfHtml_(lead, res) {
   const g = res.Global;
-  const fecha = Utilities.formatDate(new Date(), 'America/Mexico_City', "d 'de' MMMM 'de' yyyy");
+  const fecha = fechaEs_(new Date());
 
   const resumenSistemas = SISTEMAS.map(function (s) {
     const r = res[s];
@@ -455,4 +454,13 @@ function probarPdf() {
   const lead = { nombre: 'Prueba', empresa: 'Empresa de Prueba', puesto: 'Dirección', correo: Session.getActiveUser().getEmail(), perfil: {}, apertura: {}, respuestas: r };
   const res = evaluar_(r);
   Logger.log('Envío de prueba a ' + lead.correo + ': ' + enviarCorreoResultado_(lead, res, null));
+}
+
+/** Guarda en tu Drive un PDF de prueba (sin enviar correos) para revisar el diseño con el membrete. */
+function probarPdfEnDrive() {
+  const r = {};
+  DX.preguntas.forEach(function (p, i) { r[p.clave] = i % 3; });
+  const lead = { nombre: 'Ana Pérez', empresa: 'Empresa de Prueba', puesto: 'Dirección General', correo: 'prueba@ejemplo.com', perfil: {}, apertura: {}, respuestas: r };
+  const archivo = DriveApp.createFile(generarPdf_(lead, evaluar_(r)));
+  Logger.log('PDF de prueba: ' + archivo.getUrl());
 }
