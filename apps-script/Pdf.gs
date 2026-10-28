@@ -78,7 +78,7 @@ function llenarDoc_(body, lead, res) {
   const arriba = parrafo_(body, 'Revisa estos resultados con un consultor de UB: Agenda tu sesión →', { size: 9, color: PDF.AZUL, despues: 14 });
   const ini = arriba.getText().indexOf('Agenda tu sesión');
   arriba.editAsText().setBold(ini, arriba.getText().length - 1, true);
-  arriba.editAsText().setLinkUrl(ini, arriba.getText().length - 1, CONFIG.URL_AGENDA);
+  enlazar_(arriba, ini, arriba.getText().length - 1, CONFIG.URL_AGENDA, PDF.AZUL);
 
   const caja = cajaEn_(body, PDF.GRIS, 14);
   estilo_(primerParrafo_(caja, 'RESULTADO GLOBAL'), { size: 8, bold: true, despues: 2 });
@@ -89,27 +89,26 @@ function llenarDoc_(body, lead, res) {
     chip_(caja.appendParagraph(' ' + g.banda.etiqueta + ' '), g.banda, { despues: 8 });
     estilo_(caja.appendParagraph(g.banda.lectura), { size: 10, despues: 0 });
   }
-  espacio_(body, 10);
 
   // --- Resumen por sistema ---
-  SISTEMAS.forEach(function (s) {
+  // Entre dos tablas seguidas Google Docs inserta un párrafo vacío (hueco grande), por eso cada sistema
+  // lleva el nombre y el % en un párrafo, la descripción en otro y una sola tabla: la barra.
+  SISTEMAS.forEach(function (s, i) {
     const r = res[s];
     const desc = DX.sistemas.filter(function (x) { return x.clave === s; })[0].descripcion;
-    const fila = body.appendTable([['', '']]);
-    fila.setBorderWidth(0);
-    fila.setColumnWidth(0, PDF.ANCHO - 90);
-    fila.setColumnWidth(1, 90);
-    const c0 = fila.getRow(0).getCell(0), c1 = fila.getRow(0).getCell(1);
-    [c0, c1].forEach(function (c) { c.setPaddingLeft(0); c.setPaddingRight(0); c.setPaddingTop(4); c.setPaddingBottom(2); });
-    estilo_(primerParrafo_(c0, 'Sistema ' + s), { size: 12, bold: true, color: PDF.AZUL, despues: 1 });
-    estilo_(c0.appendParagraph(desc), { size: 8, despues: 0 });
-    estilo_(primerParrafo_(c1, r.pct === null ? 'N/E' : r.pct + '%'), { size: 18, bold: true, color: '#12181D', align: DocumentApp.HorizontalAlignment.RIGHT, despues: 0 });
+    const t = parrafo_(body, 'Sistema ' + s + (r.pct === null ? '' : '   ' + r.pct + '%'), { size: 12, bold: true, color: PDF.AZUL, antes: i === 0 ? 14 : 8, despues: 0, juntoConSiguiente: true });
+    if (r.pct !== null) {
+      const ini = t.getText().indexOf('   ');
+      t.editAsText().setForegroundColor(ini, t.getText().length - 1, '#12181D');
+      t.editAsText().setFontSize(ini, t.getText().length - 1, 14);
+    }
+    parrafo_(body, desc, { size: 8, despues: 3, juntoConSiguiente: true });
     if (r.pct !== null) {
       barra_(body, r.pct, r.banda.color);
-      chip_(parrafo_(body, ' ' + r.banda.etiqueta + ' ', {}), r.banda, { antes: 5, despues: 3 });
-      parrafo_(body, resumenDe_(s, r.banda), { size: 9, despues: 10 });
+      chip_(parrafo_(body, ' ' + r.banda.etiqueta + ' ', {}), r.banda, { antes: 4, despues: 2 });
+      parrafo_(body, resumenDe_(s, r.banda), { size: 9, despues: 4 });
     } else {
-      parrafo_(body, 'Las respuestas indican que este sistema no aplica en la etapa actual de la empresa.', { size: 9, antes: 4, despues: 10 });
+      parrafo_(body, 'Las respuestas indican que este sistema no aplica en la etapa actual de la empresa.', { size: 9, despues: 4 });
     }
   });
 
@@ -117,13 +116,12 @@ function llenarDoc_(body, lead, res) {
     ' (' + DX.semaforo.ref + ', p. ' + DX.semaforo.pag + ').', { size: 8, italic: true, despues: 0 });
 
   // --- Recomendaciones por sistema ---
-  body.appendPageBreak();
   titulo_(body, 'Recomendaciones por sistema');
   parrafo_(body, 'Cada recomendación incluye el pasaje del libro ' + DX.libroCita + ', de Alfonso Urrea Martín, donde puedes profundizar.', { size: 9, despues: 6 });
 
   SISTEMAS.forEach(function (s) {
     const r = res[s];
-    parrafo_(body, 'Sistema ' + s, { size: 13, bold: true, color: PDF.AZUL, antes: 12, despues: 4 });
+    parrafo_(body, 'Sistema ' + s, { size: 13, bold: true, color: PDF.AZUL, antes: 12, despues: 4, juntoConSiguiente: true });
     if (r.pct === null) {
       parrafo_(body, 'Este sistema no aplica en la etapa actual de la empresa.', { size: 9 });
       return;
@@ -134,7 +132,7 @@ function llenarDoc_(body, lead, res) {
     }
     items.forEach(function (it) {
       const etiqueta = it.pts === 0 ? 'PRIORIDAD ALTA' : 'POR FORMALIZAR';
-      const p = parrafo_(body, etiqueta + '   ' + it.rec, { size: 10, antes: 6, despues: 3 });
+      const p = parrafo_(body, etiqueta + '   ' + it.rec, { size: 10, antes: 8, despues: 3, juntoConSiguiente: true });
       const t = p.editAsText();
       t.setBold(0, etiqueta.length - 1, true);
       t.setFontSize(0, etiqueta.length - 1, 7);
@@ -150,24 +148,23 @@ function llenarDoc_(body, lead, res) {
   titulo_(body, 'Para profundizar');
   parrafo_(body, 'Las recomendaciones de este reporte se basan en ' + DX.libroCita + ', de Alfonso Urrea Martín.', { size: 10, despues: 6 });
   DX.libros.forEach(function (l) {
-    const p = parrafo_(body, l.titulo + ' (' + l.anio + ')', { size: 10, bold: true, despues: 0 });
+    parrafo_(body, l.titulo + ' (' + l.anio + ')', { size: 10, bold: true, despues: 0 });
     parrafo_(body, l.nota, { size: 9, despues: 0 });
     enlace_(body, l.url, 'Ver en Amazon', 8);
   });
-  parrafo_(body, 'Videos y podcasts', { size: 10, bold: true, color: PDF.AZUL, antes: 10, despues: 3 });
-  DX.recursos.forEach(function (r) {
-    enlace_(body, r.url, r.titulo + ' (' + r.anio + ')', 9);
+  parrafo_(body, 'Videos y podcasts', { size: 10, bold: true, color: PDF.AZUL, antes: 10, despues: 3, juntoConSiguiente: true });
+  DX.recursos.forEach(function (r, i) {
+    enlace_(body, r.url, r.titulo + ' (' + r.anio + ')', 9, i === DX.recursos.length - 1 ? 14 : 3);
   });
 
   // --- Siguiente paso ---
-  espacio_(body, 12);
   const cta = cajaEn_(body, PDF.AZUL, 14);
   estilo_(primerParrafo_(cta, 'Siguiente paso: Diagnóstico Profundo'), { size: 11, bold: true, color: '#FFFFFF', despues: 4 });
   estilo_(cta.appendParagraph('Este resultado es un pre-diagnóstico basado únicamente en tus respuestas. Un Diagnóstico Profundo con ' + CONFIG.FIRMA +
     ' permite contrastar estos hallazgos con la mirada de la familia y del equipo directivo, y construir un plan de acción a la medida de ' + conPunto_(lead.empresa)),
     { size: 9, color: '#FFFFFF', despues: 6 });
   const pa = estilo_(cta.appendParagraph('Agenda tu sesión →'), { size: 10, bold: true, color: PDF.LIMA, despues: 0 });
-  pa.editAsText().setLinkUrl(CONFIG.URL_AGENDA);
+  enlazar_(pa, 0, pa.getText().length - 1, CONFIG.URL_AGENDA, PDF.LIMA);
   parrafo_(body, 'Pre-diagnóstico generado automáticamente a partir de las respuestas proporcionadas. No sustituye una evaluación profesional.',
     { size: 7, color: '#888888', antes: 10, despues: 0 });
 }
@@ -189,6 +186,8 @@ function estilo_(p, o) {
   p.setLineSpacing(o.interlineado || 1.2);
   p.setIndentStart(0);
   p.setIndentFirstLine(0);
+  // "Mantener con el siguiente" evita títulos solos al final de una página (si esta versión de la API lo tiene).
+  if (o.juntoConSiguiente && typeof p.setKeepWithNext === 'function') p.setKeepWithNext(true);
   return p;
 }
 
@@ -197,13 +196,8 @@ function parrafo_(cont, texto, o) {
 }
 
 function titulo_(body, texto) {
-  const p = parrafo_(body, texto, { size: 16, bold: true, color: PDF.AZUL, antes: 18, despues: 4 });
+  const p = parrafo_(body, texto, { size: 16, bold: true, color: PDF.AZUL, antes: 22, despues: 4, juntoConSiguiente: true });
   return p;
-}
-
-/** Párrafo vacío de la altura indicada, para separar tablas del contenido siguiente. */
-function espacio_(body, alto) {
-  return parrafo_(body, '', { size: alto, despues: 0, interlineado: 1 });
 }
 
 /** Tabla de una sola celda con fondo de color: sirve como caja. Devuelve la celda. */
@@ -261,12 +255,18 @@ function notaLibroDoc_(body, l) {
   const h = primerParrafo_(c, 'EN EL LIBRO ' + DX.libroCita.toUpperCase() + ' · ' + l.ref + ', p. ' + l.pag);
   estilo_(h, { size: 7, bold: true, color: PDF.AZUL, despues: 2 });
   estilo_(c.appendParagraph('«' + l.cita + '»'), { size: 8, italic: true, despues: 0 });
-  espacio_(body, 4);
+}
+
+/** Enlace con color propio: Google Docs pinta los enlaces de azul por defecto, ilegible sobre fondo oscuro. */
+function enlazar_(p, ini, fin, url, color) {
+  const t = p.editAsText();
+  t.setLinkUrl(ini, fin, url);
+  t.setForegroundColor(ini, fin, color);
 }
 
 /** Línea con un enlace clicable. */
-function enlace_(body, url, texto, size) {
-  const p = parrafo_(body, texto, { size: size, color: PDF.AZUL, despues: 3 });
-  p.editAsText().setLinkUrl(url);
+function enlace_(body, url, texto, size, despues) {
+  const p = parrafo_(body, texto, { size: size, color: PDF.AZUL, despues: despues === undefined ? 3 : despues });
+  enlazar_(p, 0, p.getText().length - 1, url, PDF.AZUL);
   return p;
 }
