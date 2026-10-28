@@ -48,4 +48,4 @@ del libro. Si cambias una, conserva el texto exacto del libro y la página. Los 
 - Los correos salen desde la cuenta de Google que implementa el script (límite de Gmail: ~100 correos al día con cuenta gratuita, ~1,500 con Workspace).
 - El puntaje se recalcula en el servidor; la página solo manda los índices de las opciones elegidas.
 - Un mismo correo no puede pedir otro envío en 10 minutos, y un campo oculto descarta bots.
-- Los datos de contacto son datos personales: agrega el **aviso de privacidad** de UB y enlázalo en la casilla de aceptación del paso 1 del test.
+- Los datos de contacto son datos personales. El sitio incluye una página de **Aviso de privacidad** (`#privacidad`), enlazada desde la casilla de aceptación del test y desde el pie. Es un texto base: conviene que lo revise el área legal de UB (razón social, finalidades, plazos y el correo de contacto).
