@@ -116,6 +116,7 @@ header.nav.scrolled{ background:rgba(251,250,247,.94); backdrop-filter:blur(10px
 .logo-lockup img{ height:30px; width:auto; }
 .logo-lockup .lname{ font-family:var(--font-display); font-weight:700; font-size:16px; letter-spacing:.01em; color:var(--ub); white-space:nowrap; }
 .on-dark-page .logo-lockup .lname{ color:#fff; }
+header.nav.scrolled .logo-lockup .lname{ color:var(--ub); }
 
 nav.primary{ display:flex; align-items:center; gap:26px; flex-wrap:nowrap; }
 nav.primary a{ font-size:13px; font-weight:500; white-space:nowrap; position:relative; padding:4px 0; color:var(--ink); cursor:pointer; }
@@ -533,6 +534,117 @@ footer .col a:hover{ color:var(--lime); }
 .skip-link{ position:absolute; left:-999px; top:0; background:var(--ub); color:#fff; padding:10px 16px; z-index:1000; }
 .skip-link:focus{ left:10px; top:10px; }
 :focus-visible{ outline:2px solid var(--ub); outline-offset:3px; }
+
+/* ---------------- DIAGNÓSTICO (test interactivo) ---------------- */
+.dx{ max-width:760px; margin:0 auto; }
+.dx-prog{ margin-bottom:26px; }
+.dx-bar{ height:4px; background:var(--line); }
+.dx-bar i{ display:block; height:100%; background:var(--ub); transition:width .4s var(--ease); }
+.dx-prog-l{ margin-top:10px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; }
+.dx-card{ border:1px solid var(--line); background:#fff; padding:clamp(24px,4vw,44px); }
+.dx-card:focus, .dx-title:focus{ outline:none; }
+.dx-sys-tag{ font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ub); }
+.dx-sys-desc{ font-size:13px; color:var(--ink-soft); margin-top:4px; }
+.dx-title{ font-family:var(--font-display); font-weight:600; font-size:clamp(20px,2.6vw,27px); line-height:1.25; color:var(--ink); margin:14px 0 22px; letter-spacing:-.01em; }
+.dx-opt{ display:flex; gap:14px; align-items:flex-start; padding:16px 18px; border:1px solid var(--line); margin-top:10px; cursor:pointer; font-size:15px; line-height:1.45; transition:border-color .25s var(--ease), background .25s var(--ease); background:#fff; }
+.dx-opt:hover{ border-color:var(--ub); }
+.dx-opt.sel{ border-color:var(--ub); background:var(--off-white); }
+.dx-opt input{ margin-top:3px; accent-color:var(--ub); width:16px; height:16px; flex-shrink:0; }
+.dx-opt:focus-within{ outline:2px solid var(--ub); outline-offset:2px; }
+.dx-fields{ display:grid; grid-template-columns:1fr 1fr; gap:18px 22px; margin-top:6px; }
+.dx-field{ display:flex; flex-direction:column; gap:7px; min-width:0; }
+.dx-field.full{ grid-column:1/-1; }
+.dx-field label, .dx-legend{ font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ub); }
+.dx-field input[type=text], .dx-field input[type=email], .dx-field textarea, .dx-otro{ font:inherit; font-size:15px; padding:13px 14px; border:1px solid rgba(18,24,29,.28); background:#fff; color:var(--ink); width:100%; border-radius:0; }
+.dx-field textarea{ min-height:92px; resize:vertical; }
+.dx-field input:focus, .dx-field textarea:focus, .dx-otro:focus{ outline:2px solid var(--ub); outline-offset:1px; border-color:var(--ub); }
+.dx-group{ border:0; margin:0 0 30px; min-width:0; }
+.dx-group .dx-legend{ display:block; margin-bottom:6px; font-size:14px; text-transform:none; letter-spacing:0; color:var(--ink); font-family:var(--font-display); font-weight:600; }
+.dx-otro{ margin:8px 0 0 30px; width:calc(100% - 30px); }
+.dx-check{ display:flex; gap:12px; align-items:flex-start; font-size:13px; color:var(--ink-soft); margin-top:22px; line-height:1.5; }
+.dx-check input{ margin-top:3px; accent-color:var(--ub); width:16px; height:16px; flex-shrink:0; }
+.dx-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.dx-err{ color:#B93A32; font-size:13.5px; font-weight:600; margin-top:16px; min-height:1em; }
+.dx-nav{ display:flex; justify-content:space-between; align-items:center; gap:14px; margin-top:26px; flex-wrap:wrap; }
+.dx-note{ font-size:12.5px; color:var(--ink-soft); margin-top:16px; }
+.dx-badge{ display:inline-block; font-size:12px; font-weight:700; letter-spacing:.04em; padding:5px 12px; white-space:nowrap; }
+.dx-global{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin:10px 0 12px; }
+.dx-global b{ font-family:var(--font-display); font-size:clamp(54px,9vw,84px); line-height:1; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; }
+.dx-read{ color:var(--ink-soft); font-size:15.5px; max-width:60ch; }
+.dx-sys-list{ margin-top:32px; border-top:1px solid var(--line); }
+.dx-sys{ padding:20px 0; border-bottom:1px solid var(--line); }
+.dx-sys-h{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; }
+.dx-sys-h strong{ font-family:var(--font-display); font-size:17px; }
+.dx-sys-h span.pct{ font-family:var(--font-display); font-weight:700; font-size:22px; font-variant-numeric:tabular-nums; }
+.dx-meter{ height:10px; background:#E3E6E8; margin:10px 0 12px; }
+.dx-meter i{ display:block; height:100%; transition:width .9s var(--ease); }
+.dx-sys p{ font-size:14px; color:var(--ink-soft); max-width:62ch; }
+.dx-h3{ font-family:var(--font-display); font-weight:700; font-size:20px; margin:38px 0 6px; color:var(--ub); }
+.dx-prio{ counter-reset:p; margin-top:12px; }
+.dx-prio li{ counter-increment:p; display:grid; grid-template-columns:34px 1fr; gap:6px 14px; padding:16px 0; border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.5; }
+.dx-prio li::before{ content:counter(p); font-family:var(--font-display); font-weight:800; font-size:12px; color:var(--lime); background:var(--ub); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.dx-prio small{ display:block; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; margin-top:3px; }
+.dx-more{ margin-top:22px; border:1px solid var(--line); }
+.dx-more summary{ cursor:pointer; padding:16px 18px; font-weight:600; font-size:14px; color:var(--ub); }
+.dx-more summary:focus-visible{ outline:2px solid var(--ub); outline-offset:-2px; }
+.dx-more-body{ padding:0 18px 18px; font-size:14px; }
+.dx-more-body h4{ font-family:var(--font-display); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ub); margin:18px 0 6px; }
+.dx-more-body li{ padding:7px 0 7px 16px; position:relative; color:var(--ink-soft); line-height:1.5; }
+.dx-more-body li::before{ content:''; position:absolute; left:0; top:16px; width:6px; height:1.5px; background:var(--ub); }
+.dx-envio{ margin-top:20px; padding:18px 22px; border:1px solid var(--line); background:var(--off-white); font-size:14.5px; display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.dx-envio.ok{ border-color:#23774A; }
+.dx-envio.error{ border-color:#B93A32; }
+.dx-envio .btn{ padding:11px 20px; }
+.dx-cta{ margin-top:20px; background:var(--ub-dark); color:#fff; padding:clamp(26px,4vw,44px); }
+.dx-cta h3{ font-family:var(--font-display); font-size:clamp(22px,3vw,32px); color:#fff; line-height:1.15; }
+.dx-cta p{ color:rgba(255,255,255,.78); margin:14px 0 24px; max-width:56ch; font-size:15.5px; }
+.dx-restart{ margin-top:22px; background:none; border:none; color:var(--ink-soft); font-size:13px; text-decoration:underline; text-underline-offset:3px; padding:6px 0; }
+@media (max-width:640px){ .dx-fields{ grid-template-columns:1fr; } .dx-nav .btn{ width:100%; justify-content:center; } }
+
+/* ---------------- DIAGNÓSTICO: visibilidad y cita del libro ---------------- */
+nav.primary a.cta-dx, header.nav nav.primary a.cta-dx{ background:var(--lime); color:var(--ub-deep); border:1px solid var(--lime); padding:10px 16px; font-weight:700; font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; }
+nav.primary a.cta-dx:hover{ background:#DCEB55; border-color:#DCEB55; }
+nav.primary a.cta-dx::after{ display:none; }
+.dx-pill{ display:none; margin-left:auto; background:var(--lime); color:var(--ub-deep); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:9px 13px; white-space:nowrap; }
+@media (max-width:980px){ .dx-pill{ display:inline-block; } }
+@media (max-width:1360px) and (min-width:981px){ nav.primary .dx-lg{ display:none; } nav.primary{ gap:18px; } }
+@media (max-width:1180px) and (min-width:981px){ header.nav .logo-lockup .lname{ display:none; } nav.primary{ gap:14px; } nav.primary a{ font-size:12.5px; } nav.primary a.cta, nav.primary a.cta-dx{ padding:9px 12px; } }
+@media (max-width:600px){ header.nav .wrap{ gap:12px; } header.nav .logo-lockup .lname{ font-size:13px; } .dx-pill{ font-size:10.5px; padding:8px 10px; } }
+@media (max-width:390px){ header.nav .logo-lockup .lname{ display:none; } }
+.dx-fab{ position:fixed; z-index:300; right:max(18px, env(safe-area-inset-right,0px)); bottom:calc(18px + env(safe-area-inset-bottom,0px)); display:flex; align-items:center; gap:10px; background:var(--lime); color:var(--ub-deep); font-weight:700; font-size:12.5px; letter-spacing:.07em; text-transform:uppercase; padding:15px 22px; box-shadow:0 6px 24px rgba(7,29,38,.28); transition:transform .3s var(--ease), background .3s var(--ease); }
+.dx-fab:hover{ background:#DCEB55; transform:translateY(-2px); }
+.dx-fab:focus-visible{ outline:2px solid var(--ub-deep); outline-offset:3px; }
+@media (max-width:600px){ .dx-fab{ padding:13px 18px; font-size:11.5px; } }
+.dx-book{ margin-top:10px; padding:10px 14px; background:var(--off-white); border-left:2px solid var(--lime); font-size:13px; color:var(--ink-soft); line-height:1.5; }
+.dx-book-h{ display:block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ub); margin-bottom:4px; }
+.dx-book q{ quotes:none; font-style:italic; color:var(--ink); }
+.dx-book q::before{ content:'«'; } .dx-book q::after{ content:'»'; }
+.priv{ max-width:760px; }
+.priv h2{ font-family:var(--font-display); font-size:clamp(19px,2.2vw,24px); color:var(--ub); margin:36px 0 10px; }
+.priv h2:first-child{ margin-top:0; }
+.priv p, .priv li{ font-size:15px; color:var(--ink-soft); line-height:1.65; margin-bottom:10px; }
+.priv ul{ margin:0 0 10px 0; }
+.priv li{ padding-left:18px; position:relative; margin-bottom:6px; }
+.priv li::before{ content:''; position:absolute; left:0; top:11px; width:6px; height:1.5px; background:var(--ub); }
+.priv a, .dx-check a, .dx-note a{ color:var(--ub); text-decoration:underline; text-underline-offset:3px; }
+.priv .priv-fecha{ font-size:13px; margin-top:30px; }
+.dx-top-cta{ margin-top:14px; font-size:13.5px; font-weight:600; }
+.dx-top-cta a{ color:var(--ub); text-decoration:underline; text-underline-offset:3px; }
+.dx-top-cta a:hover{ background:var(--lime); }
+.dx-lect{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
+.dx-lect strong{ color:var(--ub); }
+.dx-res{ margin-top:20px; border:1px solid var(--line); background:#fff; padding:clamp(24px,4vw,40px); }
+.dx-books{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
+.dx-bk{ display:flex; flex-direction:column; gap:6px; border:1px solid var(--line); padding:18px; transition:border-color .25s var(--ease); min-width:0; }
+.dx-bk:hover{ border-color:var(--ub); }
+.dx-bk strong{ font-family:var(--font-display); font-size:17px; color:var(--ink); }
+.dx-bk span{ font-size:13px; color:var(--ink-soft); line-height:1.45; }
+.dx-bk em{ font-style:normal; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ub); margin-top:auto; padding-top:6px; }
+.dx-h4{ font-family:var(--font-display); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ub); margin:26px 0 6px; }
+.dx-vids li{ display:flex; justify-content:space-between; gap:14px; padding:11px 0; border-bottom:1px solid var(--line); font-size:14.5px; }
+.dx-vids a{ color:var(--ub); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+.dx-vids span{ color:var(--ink-soft); font-size:12.5px; flex-shrink:0; }
+@media (max-width:640px){ .dx-books{ grid-template-columns:1fr; } }
 </style>
 
 <a href="#top" class="skip-link">Saltar al contenido</a>
@@ -549,8 +661,10 @@ footer .col a:hover{ color:var(--lime); }
       <a href="#equipo" data-route="equipo">Equipo</a>
       <a href="#perspectivas" data-route="perspectivas">Perspectivas</a>
       <a href="#actualidad" data-route="actualidad">Actualidad</a>
-      <a href="#contacto" class="cta" data-route="contacto">Hablemos de tu empresa</a>
+      <a href="#diagnostico" class="cta-dx" data-route="diagnostico"><span class="dx-lg">Haz tu </span>diagnóstico</a>
+      <a href="#contacto" class="cta" data-route="contacto">Hablemos<span class="dx-lg"> de tu empresa</span></a>
     </nav>
+    <a href="#diagnostico" class="dx-pill" data-route="diagnostico">Diagnóstico</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -560,8 +674,11 @@ footer .col a:hover{ color:var(--lime); }
   <a href="#equipo" data-route="equipo">Equipo</a>
   <a href="#perspectivas" data-route="perspectivas">Perspectivas</a>
   <a href="#actualidad" data-route="actualidad">Actualidad</a>
+  <a href="#diagnostico" data-route="diagnostico">Diagnóstico</a>
   <a href="#contacto" class="cta" data-route="contacto">Hablemos de tu empresa →</a>
 </div>
+
+<a href="#diagnostico" class="dx-fab" id="dxFab">Haz tu diagnóstico gratis →</a>
 
 <main id="main">
 
@@ -576,7 +693,8 @@ footer .col a:hover{ color:var(--lime); }
       <h1 class="h-xxl">CONSTRUYE LO QUE TE VA A TRASCENDER.</h1>
       <p class="lede">Ayudamos a empresarios y familias empresarias a construir gobierno, estrategia y estructura para que la empresa pueda crecer, decidir y continuar sin depender de una sola persona.</p>
       <div class="hero-cta">
-        <a href="#contacto" class="btn btn-primary">Hablemos de tu empresa</a>
+        <a href="#diagnostico" class="btn btn-primary">Haz el diagnóstico · 8 min →</a>
+        <a href="#contacto" class="btn btn-ghost">Hablemos de tu empresa</a>
         <a href="#metodologia" class="btn btn-ghost">Cómo trabajamos</a>
       </div>
     </div>
@@ -811,12 +929,12 @@ footer .col a:hover{ color:var(--lime); }
 </section>
 
 <!-- DIAGNOSTICO -->
-<section class="section-pad bg-paper section-divider diag" id="diagnostico">
+<section class="section-pad bg-paper section-divider diag" id="diagnostico-home">
   <div class="wrap">
     <span class="eyebrow" data-reveal><span class="idx">11</span> Diagnóstico de madurez</span>
     <h2 class="h-lg" data-reveal style="--d:80ms">¿QUÉ TAN INSTITUCIONALIZADA<br>ESTÁ TU EMPRESA?</h2>
-    <p class="lede" data-reveal style="--d:140ms; margin:22px auto 0;">Estamos desarrollando una herramienta de autodiagnóstico para ubicar en qué etapa de institucionalización se encuentra tu empresa. <span class="pending">Herramienta en desarrollo</span> — mientras la preparamos, la forma más rápida de obtenerlo es conversarlo directamente con nosotros.</p>
-    <a href="#contacto" class="btn btn-primary" data-reveal style="--d:200ms">Hablemos de tu empresa</a>
+    <p class="lede" data-reveal style="--d:140ms; margin:22px auto 0;">Responde 20 preguntas en unos 8 minutos y conoce al instante en qué etapa de institucionalización está tu empresa, con recomendaciones por sistema. Te enviamos el detalle en PDF a tu correo y puedes agendar una sesión con nosotros.</p>
+    <a href="#diagnostico" class="btn btn-primary" data-reveal style="--d:200ms">Hacer el diagnóstico</a>
   </div>
 </section>
 
@@ -1302,6 +1420,7 @@ footer .col a:hover{ color:var(--lime); }
           <h4>Vivir, Trabajar y Crecer en Familia</h4>
           <div class="subt">"Un modelo para la continuidad de la empresa y la unión familiar."</div>
           <div class="auth">Alfonso Urrea Martín — LID Editorial</div>
+          <a class="aa-link" href="https://www.amazon.com.mx/Trabajar-Crecer-Familia-Gesti%C3%B3n-Institucionalizaci%C3%B3n/dp/6078704141" target="_blank" rel="noopener">Comprar en Amazon →</a>
         </div>
       </div>
       <div class="book-card" data-reveal style="--d:100ms">
@@ -1311,6 +1430,7 @@ footer .col a:hover{ color:var(--lime); }
           <div class="subt">"Cómo institucionalizar tu empresa para fortalecer su gestión y que trascienda generaciones."</div>
           <div class="auth">Alfonso Urrea Martín</div>
           <p style="margin-top:6px; font-size:11.5px; color:var(--ink-soft);">Prólogos de Carlos Slim Domit y Oso Trava.</p>
+          <a class="aa-link" style="display:inline-block; margin-top:10px;" href="https://www.amazon.com.mx/Mayor-Desaf%C3%ADo-Alfonso-Urrea-Martin/dp/9689721224" target="_blank" rel="noopener">Comprar en Amazon →</a>
         </div>
       </div>
     </div>
@@ -1559,6 +1679,90 @@ footer .col a:hover{ color:var(--lime); }
 </section>
 <!-- ================= /CONTACTO ================= -->
 
+<!-- ================= DIAGNOSTICO (test interactivo) ================= -->
+<section class="view" id="view-diagnostico">
+
+<section class="page-hero" style="padding:calc(var(--nav-h) + 32px) 0 40px;">
+  <div class="wrap">
+    <span class="eyebrow on-dark kicker">Diagnóstico de madurez</span>
+    <h1 class="h-xl" style="font-size:clamp(26px,3.6vw,46px); margin-top:12px;">¿QUÉ TAN INSTITUCIONALIZADA<br>ESTÁ TU EMPRESA?</h1>
+    <p class="lede" style="margin-top:14px; font-size:clamp(15px,1.3vw,17px);">20 preguntas, unos 8 minutos. Verás tu resultado al instante y te enviamos por correo un PDF con recomendaciones por sistema.</p>
+    <p class="crumb" style="margin-top:16px;"><a href="#top">Inicio</a> / Diagnóstico</p>
+  </div>
+</section>
+
+<section class="section-pad-sm bg-white" style="border-bottom:none;">
+  <div class="wrap">
+    <div id="dxApp" class="dx"></div>
+  </div>
+</section>
+
+</section>
+<!-- ================= /DIAGNOSTICO ================= -->
+
+<!-- ================= AVISO DE PRIVACIDAD ================= -->
+<section class="view" id="view-privacidad">
+<!-- Texto base redactado para el diagnóstico en línea. Conviene que lo revise el área legal de UB (razón social, finalidades y plazos). -->
+
+<section class="page-hero" style="padding:calc(var(--nav-h) + 32px) 0 40px;">
+  <div class="wrap">
+    <span class="eyebrow on-dark kicker">Legal</span>
+    <h1 class="h-xl" style="font-size:clamp(26px,3.6vw,46px); margin-top:12px;">AVISO DE PRIVACIDAD</h1>
+    <p class="crumb" style="margin-top:16px;"><a href="#top">Inicio</a> / Aviso de privacidad</p>
+  </div>
+</section>
+
+<section class="section-pad-sm bg-white" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="priv">
+      <h2>1. Quién es el responsable de tus datos</h2>
+      <p>UB Consultores (en adelante, “UB”), con domicilio en Av. de las Américas 1254, Piso 8, Country Club, C.P. 44610, Guadalajara, Jalisco, México, es responsable del tratamiento de tus datos personales, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y demás normatividad aplicable.</p>
+      <p>Para cualquier asunto relacionado con este aviso puedes escribirnos a <a href="mailto:ub@ubconsultores.mx">ub@ubconsultores.mx</a> o llamar al +52 33 3809 1684.</p>
+
+      <h2>2. Qué datos recabamos</h2>
+      <p>Cuando contestas el diagnóstico de madurez en este sitio recabamos:</p>
+      <ul>
+        <li>Datos de contacto: nombre, empresa, puesto o cargo y correo electrónico.</li>
+        <li>Datos de perfil: si perteneces a la familia propietaria, tu generación, tu antigüedad en la empresa y tu principal motivo para institucionalizarla.</li>
+        <li>Tus respuestas al cuestionario y, si decides escribirlas, tus respuestas a las preguntas abiertas.</li>
+      </ul>
+      <p>No te pedimos datos personales sensibles. Te pedimos que no los incluyas en las respuestas abiertas.</p>
+
+      <h2>3. Para qué usamos tus datos</h2>
+      <p><strong>Finalidades necesarias:</strong></p>
+      <ul>
+        <li>Calcular y mostrarte el resultado de tu diagnóstico.</li>
+        <li>Enviarte por correo electrónico el diagnóstico en PDF, con recomendaciones.</li>
+      </ul>
+      <p><strong>Finalidades adicionales:</strong></p>
+      <ul>
+        <li>Contactarte para dar seguimiento a tu diagnóstico y, en su caso, ofrecerte los servicios de UB, como el Diagnóstico Profundo.</li>
+        <li>Elaborar estadísticas internas y mejorar el diagnóstico, sin identificarte.</li>
+      </ul>
+      <p>Si no deseas que usemos tus datos para las finalidades adicionales, escríbenos a <a href="mailto:ub@ubconsultores.mx">ub@ubconsultores.mx</a> y dejaremos de hacerlo. Esto no afecta el envío de tu diagnóstico.</p>
+
+      <h2>4. Con quién los compartimos</h2>
+      <p>No vendemos tus datos ni los transferimos a terceros para sus propios fines. Para operar el diagnóstico utilizamos servicios de Google (correo electrónico, almacenamiento y hojas de cálculo), que tratan tus datos por cuenta de UB y pueden hacerlo en servidores ubicados fuera de México. Solo compartiremos tus datos con una autoridad cuando una ley lo exija.</p>
+
+      <h2>5. Cómo ejercer tus derechos</h2>
+      <p>Tienes derecho a acceder a tus datos, rectificarlos, cancelarlos u oponerte a su tratamiento (derechos ARCO), así como a revocar tu consentimiento. Para ejercerlos envía un correo a <a href="mailto:ub@ubconsultores.mx">ub@ubconsultores.mx</a> con tu nombre, el medio por el que quieres recibir respuesta, una copia de una identificación oficial y la descripción clara de lo que solicitas. Te responderemos en un plazo máximo de 20 días hábiles.</p>
+
+      <h2>6. Cuánto tiempo los conservamos</h2>
+      <p>Conservamos tus datos mientras sean necesarios para las finalidades descritas o hasta que solicites su cancelación, salvo que una ley nos obligue a conservarlos por más tiempo.</p>
+
+      <h2>7. Cambios a este aviso</h2>
+      <p>Si este aviso cambia, publicaremos la versión actualizada en esta página.</p>
+
+      <p>Si consideras que tu derecho a la protección de datos personales ha sido vulnerado, puedes acudir ante la autoridad competente en la materia.</p>
+
+      <p class="priv-fecha">Última actualización: 28 de octubre de 2026.</p>
+    </div>
+  </div>
+</section>
+
+</section>
+<!-- ================= /AVISO DE PRIVACIDAD ================= -->
+
 </main>
 
 <footer>
@@ -1574,7 +1778,9 @@ footer .col a:hover{ color:var(--lime); }
       <a href="#equipo">Equipo</a>
       <a href="#perspectivas">Perspectivas</a>
       <a href="#actualidad">Actualidad</a>
+      <a href="#diagnostico">Diagnóstico</a>
       <a href="#contacto">Contacto</a>
+      <a href="#privacidad">Aviso de privacidad</a>
     </div>
     <div class="col">
       <h5>Contacto</h5>
@@ -1727,7 +1933,7 @@ footer .col a:hover{ color:var(--lime); }
   /* ---------------- HASH ROUTER (single-page, multi-view) ---------------- */
   var ROUTES = {
     '': 'home', 'top': 'home', 'resolver':'home', 'dependencia':'home', 'institucionalizar':'home',
-    'acompanar':'home', 'amor':'home', 'modelo-teaser':'home', 'casos-teaser':'home', 'diagnostico':'home', 'home-cta':'home',
+    'acompanar':'home', 'amor':'home', 'modelo-teaser':'home', 'casos-teaser':'home', 'diagnostico':'diagnostico', 'diagnostico-home':'home', 'home-cta':'home',
     'metodologia':'metodologia','generaciones':'metodologia','institucionalizacion':'metodologia',
     'modelo':'metodologia','sistema-patrimonial':'metodologia','sistema-empresarial':'metodologia',
     'sistema-operativo':'metodologia','como':'metodologia','esencia':'metodologia',
@@ -1736,7 +1942,8 @@ footer .col a:hover{ color:var(--lime); }
     'clientes':'clientes','casos':'clientes','lista-clientes':'clientes','testimonios':'clientes','numeros':'clientes',
     'perspectivas':'perspectivas',
     'actualidad':'actualidad','feed':'actualidad',
-    'contacto':'contacto'
+    'contacto':'contacto',
+    'privacidad':'privacidad'
   };
   var views = document.querySelectorAll('.view');
   var navLinks = document.querySelectorAll('nav.primary a, .mobile-drawer a');
@@ -1772,6 +1979,395 @@ footer .col a:hover{ color:var(--lime); }
   window.addEventListener('hashchange', route);
   route();
 
+})();
+</script>
+
+<!-- Contenido del diagnóstico: se genera con diagnostico/build.py desde diagnostico/datos.json. No editar a mano. -->
+<script>var DX=/*DX:START*/{"sistemas":[{"clave":"Patrimonial","descripcion":"Cómo se gobierna la familia propietaria: reglas, acuerdos y protección del patrimonio."},{"clave":"Empresarial","descripcion":"Cómo se gobierna la empresa: Consejo, comités de control y separación de roles."},{"clave":"Operativo","descripcion":"Cómo se dirige el día a día: dirección, estructura, procesos y toma de decisiones."}],"bandas":[{"hasta":33,"etiqueta":"Requiere atención urgente","color":"#B93A32","texto":"#FFFFFF","lectura":"Hay carencias importantes: faltan reglas, órganos o acuerdos formales que protejan a la familia y a la empresa."},{"hasta":66,"etiqueta":"En desarrollo","color":"#D9A21B","texto":"#2A2000","lectura":"Hay avances y buenas intenciones, pero buena parte de lo que funciona es informal o no está documentado."},{"hasta":100,"etiqueta":"Sólido","color":"#23774A","texto":"#FFFFFF","lectura":"Existen bases formales sólidas; el reto es mantenerlas vivas y seguir mejorándolas."}],"resumen":{"Patrimonial":["Las reglas de la familia propietaria casi no están formalizadas. La prioridad es dar orden al gobierno familiar: asamblea, consejo de familia y protocolo.","Hay bases y acuerdos informales. El siguiente paso es documentarlos y darles reglas de funcionamiento para que resistan el paso de las generaciones.","El gobierno patrimonial está bien establecido. El reto es mantenerlo vivo: revisar el protocolo con regularidad y preparar a la siguiente generación."],"Empresarial":["Falta contrapeso dentro de la empresa. La prioridad es instalar el Consejo de Administración y los comités de control.","Existen órganos de gobierno, pero con funcionamiento parcial o informal. Conviene fortalecerlos con facultades por escrito, manuales y consejeros independientes.","El gobierno corporativo es sólido. El reto es evaluar su desempeño con periodicidad y cuidar la independencia del Consejo."],"Operativo":["La operación depende más de las personas que de la estructura. La prioridad es definir roles, organigrama, comités y un plan estratégico.","La operación funciona, pero parte de lo que funciona no está documentado. Formalizar procesos y comités reduce la dependencia de personas clave.","La estructura operativa es sólida. El reto es sostenerla con seguimiento de indicadores y desarrollo de talento."]},"perfil":[{"clave":"PF_FAMILIA","tipo":"opcion","requerido":true,"titulo":"¿Eres parte de la familia propietaria?","opciones":["Sí, soy de la familia propietaria y trabajo en la empresa","Sí, soy de la familia propietaria, pero no trabajo en la empresa","No soy de la familia (directivo, colaborador o asesor)"]},{"clave":"PF_GENERACION","tipo":"opcion","requerido":true,"titulo":"¿A qué generación de la familia perteneces?","opciones":["Primera generación (fundador/a)","Segunda generación","Tercera generación","Cuarta generación o más","No soy de la familia propietaria"]},{"clave":"PF_ANTIGUEDAD","tipo":"opcion","requerido":true,"titulo":"¿Cuántos años llevas en la empresa o vinculado/a a ella?","opciones":["Menos de 2 años","De 2 a 5 años","De 6 a 10 años","De 11 a 20 años","Más de 20 años"]},{"clave":"PF_MOTIVO","tipo":"opcion","requerido":true,"otra":true,"titulo":"¿Cuál es hoy tu principal motivo para buscar institucionalizar la empresa?","opciones":["Preparar la sucesión o el relevo generacional","Evitar o resolver conflictos dentro de la familia","Ordenar la relación entre familia y empresa (reglas, roles, sueldos)","Profesionalizar la dirección y la operación","Proteger el patrimonio familiar","Crecer o abrirme a nuevos socios, inversionistas o financiamiento"]},{"clave":"PF_PREOCUPACION","tipo":"parrafo","requerido":false,"titulo":"En tus palabras: ¿qué es lo que más te preocupa hoy de tu empresa y de tu familia?"}],"apertura":[["A1","¿Qué pasaría con tu empresa si mañana tú no estuvieras al frente?"],["A2","¿Tu familia tiene reglas claras para participar en la empresa o todo se resuelve sobre la marcha?"],["A3","¿Tienes claro de quién depende el futuro del negocio?"],["A4","¿Tienes un plan claro de sucesión o solo esperas que el tiempo lo resuelva?"],["A5","¿Qué legado quieres dejar: una empresa dependiente de ti o una organización que trascienda generaciones?"]],"preguntas":[{"clave":"P1","sistema":"Patrimonial","titulo":"¿Los accionistas se reúnen de manera formal y periódica para tomar decisiones de la empresa?","opciones":["Sí, nos reunimos de forma regular, con fechas fijas y todo se documenta","Nos reunimos, pero sin orden fijo, sin actas, o solo cuando surge algo urgente","No tenemos un espacio así; las decisiones se toman de manera informal","No aplica en esta etapa (ej. hay un solo accionista)"],"rec":["Instalar una Asamblea de Accionistas con calendario anual, orden del día y actas firmadas, para que las decisiones de propiedad dejen de tomarse de manera informal.","Formalizar la Asamblea de Accionistas: fechas fijas durante el año, convocatoria, orden del día y acta de cada sesión."],"libro":{"ref":"Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»","pag":62,"cita":"Asamblea de accionistas: decide sobre temas clave, como otorgar mandato al consejo de administración, designar consejeros, modificar estatutos, aprobar fusiones, inversiones, venta de activos o distribución de dividendos."}},{"clave":"P2","sistema":"Patrimonial","titulo":"¿Existe un espacio formal donde la familia dueña hable temas de familia y patrimonio, distinto de las juntas de negocio?","opciones":["Sí, con reglas claras, representación de todas las ramas de la familia y reuniones periódicas","Existe de manera informal (reuniones familiares sin estructura) o sin representar a todas las ramas","No existe ningún espacio así","No aplica en esta etapa"],"rec":["Crear un Consejo de Familia, separado de la Asamblea y del Consejo de Administración, donde las ramas de la familia hablen de patrimonio, valores y convivencia.","Dar estructura al espacio familiar: reglas de integración, representación de todas las ramas y reuniones periódicas con agenda."],"libro":{"ref":"Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»","pag":62,"cita":"Consejo de familia: conecta intereses del negocio con los de la familia, ayuda a mantener alineada la visión y crea un espacio de diálogo fuera de la operación."}},{"clave":"P3","sistema":"Patrimonial","titulo":"¿Existe un documento firmado que establezca las reglas de convivencia entre familia y empresa?","opciones":["Sí, firmado y cubre los temas clave (historia, valores, gobierno, entradas/salidas, patrimonio)","Existe un borrador o solo acuerdos verbales, sin firmar","No existe ningún documento ni acuerdo","No aplica en esta etapa"],"rec":["Elaborar un Protocolo Familiar firmado que defina historia, valores, gobierno, reglas de entrada y salida, y manejo del patrimonio.","Convertir los acuerdos verbales o el borrador en un Protocolo Familiar firmado, y revisarlo de forma periódica."],"libro":{"ref":"Cap. 2, «Institucionalizar el amor»","pag":38,"cita":"El protocolo familiar —o acuerdo de socios— es un marco más estructurado. Establece principios, reglas y compromisos que guían la relación entre la familia (o socios), la propiedad y la empresa."}},{"clave":"P4","sistema":"Patrimonial","titulo":"¿Existen reglas escritas que protejan la propiedad de la empresa si algo le pasa a un accionista, o si las acciones se van repartiendo entre más personas con el paso de las generaciones?","opciones":["Sí, documentadas en un acuerdo de accionistas","Se conocen de manera informal, sin documentar","No se ha abordado el tema"],"rec":["Abordar la protección de la propiedad: diseñar un Acuerdo de Accionistas con mecanismos de transmisión y protección de acciones antes de que ocurra una eventualidad.","Documentar en un Acuerdo de Accionistas las reglas que hoy se conocen de manera informal (transmisión, venta, fallecimiento, entrada de nuevos accionistas)."],"libro":{"ref":"Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»","pag":62,"cita":"¿Existen protocolos que regulan la venta, donación o herencia de acciones?"}},{"clave":"P5","sistema":"Patrimonial","titulo":"¿Los accionistas que NO trabajan en la operación del negocio piden o reciben puestos y sueldos solo por ser dueños?","opciones":["No; ser accionista no da derecho automático a un puesto","Ocurre ocasionalmente y genera tensión","Es una práctica común, sin importar desempeño o preparación"],"rec":["Establecer que ser accionista no da derecho automático a un puesto ni a un sueldo, y definir criterios de ingreso basados en preparación y desempeño.","Poner por escrito los criterios para que un familiar ingrese, permanezca y sea remunerado en la empresa, y aplicarlos sin excepciones."],"libro":{"ref":"Cap. 5, «La participación del accionista: entre el derecho económico y la responsabilidad institucional»","pag":109,"cita":"El accionista institucional no gestiona, no presiona, no improvisa. Participa cuando le corresponde, decide lo que le incumbe y confía en los sistemas que gestionan y ejecutan."}},{"clave":"P6","sistema":"Patrimonial","titulo":"¿Los accionistas tienen claro y coinciden en para qué existe la empresa, más allá de generar utilidades?","opciones":["Sí, con un ejercicio formal documentado","Existe una idea compartida, pero no está formalizada","No se ha hablado del tema, o hay ideas muy distintas entre accionistas"],"rec":["Realizar un ejercicio formal de propósito y visión compartida entre los accionistas, para alinear para qué existe la empresa.","Formalizar la idea compartida en un documento de propósito, visión y valores que los accionistas conozcan y firmen."],"libro":{"ref":"Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»","pag":62,"cita":"El sistema patrimonial es el encargado de gestionar esa convivencia: la relación entre accionistas, sus reglas y expectativas. Es el espacio donde se alinean visión, propósito, valores, derechos y responsabilidades."}},{"clave":"P7","sistema":"Empresarial","titulo":"¿La empresa cuenta con un Consejo de Administración o Consultivo instalado, más allá de la operación diaria?","opciones":["Sí, formal, con consejeros independientes y agenda de trabajo","Existe, pero solo con familiares o de manera informal","No existe","No aplica en esta etapa"],"rec":["Instalar un Consejo de Administración (o un Consejo Consultivo como primer paso), con agenda de trabajo y calendario de sesiones.","Fortalecer el Consejo: incorporar consejeros independientes, definir una agenda anual y redactar un manual de funcionamiento."],"libro":{"ref":"Cap. 4, «Sistema empresarial: estrategia con respaldo»","pag":64,"cita":"Iniciar con consejos pequeños (tres a cinco miembros) para aprender a deliberar sin dispersarse."}},{"clave":"P8","sistema":"Empresarial","titulo":"¿Ese Consejo tiene realmente la facultad de nombrar o remover a la alta dirección de la empresa?","opciones":["Sí, es una facultad reconocida y que se ha ejercido","Existe en el papel, pero no se ha usado o se cuestiona","No la tiene; esa decisión la toma únicamente el fundador/dueño","No aplica en esta etapa (no existe un Consejo)"],"rec":["Dotar al Consejo, por escrito, de la facultad de nombrar y remover a la alta dirección, y acordar con el fundador cómo se ejerce.","Respaldar la facultad del Consejo sobre la alta dirección: documentarla en estatutos o en el manual del Consejo y definir un proceso de evaluación."],"libro":{"ref":"Cap. 4, «Sistema operativo: donde la estrategia cobra vida»","pag":65,"cita":"No existe un espacio formal que supervise y apruebe la gestión del director general."}},{"clave":"P9","sistema":"Empresarial","titulo":"¿Existen comités que funcionen como contrapeso a la Dirección General (por ejemplo, de auditoría, temas fiscales o remuneraciones)?","opciones":["Sí, instalados y funcionando, con manual de operación","Existe al menos uno, los demás se manejan caso por caso","No existe ninguno","No aplica en esta etapa"],"rec":["Instalar comités de control (auditoría, temas fiscales, remuneraciones) que funcionen como contrapeso de la Dirección General.","Instalar de forma ordenada los comités que faltan y documentar el manual de operación de cada uno."],"libro":{"ref":"Cap. 4, «Sistema empresarial: estrategia con respaldo»","pag":64,"cita":"Crear comités de control y estratégicos, diseñados según la realidad de la organización."}},{"clave":"P10","sistema":"Empresarial","titulo":"¿Existe un comité que defina, con base en estudios de mercado, los sueldos y bonos de familiares y directivos?","opciones":["Sí, reporta al Consejo y documenta cada decisión","Existe un criterio informal, sin comité ni actas","La Dirección General decide los sueldos de familiares sin ningún contrapeso","No aplica en esta etapa (no existen comités de control)"],"rec":["Crear un comité de remuneraciones que defina sueldos y bonos de familiares y directivos con base en estudios de mercado y que reporte al Consejo.","Formalizar el criterio actual de remuneraciones en un comité con actas y reporte al Consejo."],"libro":{"ref":"Cap. 2, «Institucionalizar el amor»","pag":43,"cita":"Creamos un comité de remuneraciones y diseñamos un sistema simple y eficaz: en los años pares, se compararía nuestra compensación contra el mercado, y en los años nones, se aplicaría una fórmula basada en las cuatro variables financieras más relevantes del negocio."}},{"clave":"P11","sistema":"Empresarial","titulo":"¿Existen comités específicos para decidir sobre crecimiento o expansión del negocio (nuevas unidades, nuevos socios, franquicias)?","opciones":["Sí, con facultades documentadas","Existe al menos uno, pero sin facultades por escrito","No existen","No aplica en esta etapa"],"rec":["Crear comités para las decisiones de crecimiento (nuevas unidades, nuevos socios, franquicias), con facultades claras.","Poner por escrito las facultades de los comités de crecimiento que ya existen."],"libro":{"ref":"Cap. 4, «Sistema empresarial: estrategia con respaldo»","pag":64,"cita":"¿El consejo ha instaurado comités que den seguimiento a la implementación de estrategias clave?"}},{"clave":"P12","sistema":"Empresarial","titulo":"¿Los miembros de la familia distinguen con claridad cuándo están hablando como accionistas, como consejeros o como colaboradores de la empresa?","opciones":["Sí, de manera consistente","La mayoría de las veces, aunque a veces se mezclan","No hay distinción; es fuente constante de conflicto"],"rec":["Definir los tres roles (accionista, consejero y colaborador) y establecer un foro y reglas distintas para cada uno.","Reforzar la separación de roles con reglas de conducta y foros diferenciados para cada uno."],"libro":{"ref":"Cap. 2, «Lazos personales vs. roles profesionales»","pag":36,"cita":"Crear espacios específicos para los roles profesionales —base de la institucionalización— permite cuidar que las relaciones familiares no se desgasten ni se erosionen."}},{"clave":"P13","sistema":"Operativo","titulo":"Si la persona que dirige la empresa hoy dejara de estar presente por un mes, ¿la operación seguiría funcionando con normalidad?","opciones":["Sí, las áreas tienen autonomía real para decidir","Se nota su ausencia; muchas decisiones dependen de que regrese","La operación se detendría; todo depende de esa persona"],"rec":["Reducir la dependencia de la persona que dirige: delegar decisiones con facultades documentadas y preparar una sucesión operativa.","Documentar qué decisiones dependen hoy de una sola persona y transferirlas de forma gradual a las áreas, con límites de autoridad claros."],"libro":{"ref":"Cap. 4, «Sistema operativo: donde la estrategia cobra vida»","pag":66,"cita":"Toda la operación depende de una o pocas personas."}},{"clave":"P14","sistema":"Operativo","titulo":"¿Existe un Comité de Dirección formalmente constituido, con facultades documentadas?","opciones":["Sí, con un documento claro de funcionamiento","Hay reuniones de dirección regulares, pero sin documento formal","No existe","No aplica en esta etapa"],"rec":["Constituir un Comité de Dirección con integrantes, facultades y periodicidad definidos.","Formalizar el Comité de Dirección en un documento que establezca integrantes, facultades y calendario."],"libro":{"ref":"Cap. 4, «Sistema operativo: donde la estrategia cobra vida»","pag":66,"cita":"El director general no ha conformado un comité de dirección que lo respalde."}},{"clave":"P15","sistema":"Operativo","titulo":"¿La empresa cuenta con un organigrama formal, actualizado y que todos conocen?","opciones":["Sí, documentado, actualizado y conocido por todos","Existe, pero desactualizado o poco comunicado","No existe"],"rec":["Elaborar un organigrama formal con funciones y líneas de reporte, y comunicarlo a toda la organización.","Actualizar el organigrama, comunicarlo a todos y nombrar a un responsable de mantenerlo vigente."],"libro":{"ref":"Cap. 9, «Estructuras correctas con las personas idóneas»","pag":166,"cita":"El organigrama no debe ser resultado de la historia, sino respuesta a una pregunta fundamental: ¿qué estructura permite ejecutar la estrategia con mayor eficacia?"}},{"clave":"P16","sistema":"Operativo","titulo":"¿Existe un Código de Ética formal, documentado y comunicado a todos los colaboradores?","opciones":["Sí, documentado, comunicado y aplicado","Existe el documento, pero poco se comunica o aplica","No existe"],"rec":["Redactar un Código de Ética y comunicarlo a todos los colaboradores.","Difundir y aplicar el Código de Ética existente: inducción, capacitación y un mecanismo para atender casos."],"libro":{"ref":"Cap. 5, «La cultura que sostiene la institucionalización»","pag":110,"cita":"Una cultura sólida sostiene la institucionalización incluso cuando las reglas fallan. Una cultura tóxica, en cambio, puede deshacer cualquier sistema, por muy bien diseñado que esté."}},{"clave":"P17","sistema":"Operativo","titulo":"¿Existen comités operativos (de ventas, producción, finanzas, etc.) con propósito y periodicidad definidos?","opciones":["Sí, con un mapa de comités documentado","Hay reuniones periódicas, sin formalizarse como comité","No existen o son esporádicas","No aplica en esta etapa"],"rec":["Definir un mapa de comités operativos (ventas, producción, finanzas, etc.) con propósito y periodicidad.","Formalizar las reuniones periódicas como comités, con propósito, integrantes y minuta."],"libro":{"ref":"Cap. 4, «Sistema operativo: donde la estrategia cobra vida»","pag":65,"cita":"El sistema operativo traduce lo acordado en realidad; está compuesto por la dirección general, los comités operativos y los equipos que ejecutan la operación diaria."}},{"clave":"P18","sistema":"Operativo","titulo":"¿Existe un calendario institucional claro de quién se reúne, cuándo y para qué?","opciones":["Sí, documentado y se respeta","Existe de manera informal o es inconsistente","No existe"],"rec":["Construir un calendario institucional anual de reuniones: quién se reúne, cuándo y para qué.","Documentar el calendario institucional y nombrar a un responsable de darle seguimiento."],"libro":{"ref":"Cap. 5, «Dirección general: entre la urgencia operativa y la conducción institucional»","pag":105,"cita":"El calendario está definido con meses de anticipación. El segundo lunes de cada mes, por ejemplo, se celebra la reunión del comité enfocado en la «eficiencia operativa», con duración máxima de dos horas."}},{"clave":"P19","sistema":"Operativo","titulo":"¿Los sueldos se definen con base en un tabulador con referencias de mercado?","opciones":["Sí, actualizado y aplicado","Existe, pero está desactualizado","Se definen de manera discrecional; no existe un tabulador"],"rec":["Crear un tabulador de sueldos con referencias de mercado y reglas claras de aplicación.","Actualizar el tabulador con referencias de mercado vigentes y aplicarlo de manera consistente."],"libro":{"ref":"Cap. 9, «Decisiones justas en la gestión del talento»","pag":169,"cita":"Muchas veces, los sistemas de desarrollo humano están desalineados: premian mediocridades, otorgan incrementos sin mérito o toleran faltas graves contra los valores."}},{"clave":"P20","sistema":"Operativo","titulo":"¿Las decisiones operativas se basan en un plan estratégico aprobado, o principalmente en la intuición de los dueños/directivos?","opciones":["Se basan en un plan estratégico aprobado, con seguimiento de indicadores","Hay una mezcla: algo de plan, pero muchas decisiones siguen siendo intuitivas","La empresa opera solo con base en la intuición de los familiares"],"rec":["Elaborar un plan estratégico con objetivos e indicadores, para que las decisiones dejen de depender de la intuición.","Consolidar el plan estratégico: aprobarlo en el órgano de gobierno y darle seguimiento con indicadores."],"libro":{"ref":"Cap. 5, «Visión de futuro compartida: el mapa estratégico UB»","pag":102,"cita":"Incluso, cuando la visión de futuro es compartida, las diferencias en la ejecución o la falta de seguimiento impiden el avance con acciones efectivas."}}],"libros":[{"id":"tmd","titulo":"Tu mayor desafío","autor":"Alfonso Urrea Martín","anio":"2026","url":"https://www.amazon.com.mx/Mayor-Desaf%C3%ADo-Alfonso-Urrea-Martin/dp/9689721224","nota":"Cómo institucionalizar tu empresa para fortalecer su gestión y que trascienda generaciones."},{"id":"vtc","titulo":"Vivir, Trabajar y Crecer en Familia","autor":"Alfonso Urrea Martín","anio":"2023","url":"https://www.amazon.com.mx/Trabajar-Crecer-Familia-Gesti%C3%B3n-Institucionalizaci%C3%B3n/dp/6078704141","nota":"Un modelo para la continuidad de la empresa y la unión familiar."}],"libroCita":"Tu mayor desafío","semaforo":{"ref":"Cap. 5, «Lo que sí funciona: el semáforo institucional UB»","pag":91,"cap6":"Cap. 6, «Diagnóstico emocional y estratégico»","pag6":117},"lecturas":{"Patrimonial":[{"ref":"Cap. 2, «La paradoja del amor»","pag":23},{"ref":"Cap. 4, «Sistema patrimonial: acuerdos que cuidan lo que compartimos»","pag":62},{"ref":"Cap. 10, «Sucesión en el sistema patrimonial»","pag":185}],"Empresarial":[{"ref":"Cap. 4, «Sistema empresarial: estrategia con respaldo»","pag":63},{"ref":"Cap. 7, «Cuando los órganos fallan»","pag":129},{"ref":"Cap. 10, «Sucesión en el sistema empresarial»","pag":187}],"Operativo":[{"ref":"Cap. 4, «Sistema operativo: donde la estrategia cobra vida»","pag":65},{"ref":"Cap. 5, «Dirección general: entre la urgencia operativa y la conducción institucional»","pag":105},{"ref":"Cap. 9, «Sistemas con alma»","pag":161},{"ref":"Cap. 10, «Sucesión en el sistema operativo»","pag":188}]},"recursos":[{"titulo":"Cuando el río suena","anio":"2026","url":"https://www.youtube.com/watch?v=3MZxacnYea4"},{"titulo":"Podcast con Oso Trava","anio":"2023","url":"https://www.youtube.com/watch?v=nKB1neAd_2g"},{"titulo":"Entrevista con Andrea Gallardo","anio":"2025","url":"https://www.youtube.com/watch?v=IXxHsk3g2Lk"},{"titulo":"GIRA Podcast","anio":"2025","url":"https://www.youtube.com/watch?v=uxvwc7D4yeE"},{"titulo":"Entrevista con Jorge Serratos","anio":"2025","url":"https://www.youtube.com/watch?v=qMClcDYFDnQ"},{"titulo":"Progresivo Podcast","anio":"2024","url":"https://www.youtube.com/watch?v=PKlbqA2wdSs"}]}/*DX:END*/;</script>
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById('dxApp');
+  if (!root || !DX) return;
+
+  /* URL de la app web de Apps Script que envía el PDF por correo (ver apps-script/README.md).
+     Mientras esté vacía, el test funciona y muestra resultados, pero el envío por correo falla. */
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxAu8qSbM7CvRZ3J1dZso3MkfdNgsZ21iJkJIC7AWc5CELixRn50TbpNAeWMwrYqBgF/exec';
+  var AGENDA = 'https://calendar.app.google/gx4gJDjGpWsMHpJV7';
+
+  var NQ = DX.preguntas.length;
+  var TOTAL = 3 + NQ;
+  var state = nuevo();
+
+  function nuevo(){
+    return { step:'intro', i:0, datos:{nombre:'',empresa:'',puesto:'',correo:'',consent:false},
+             perfil:{}, otro:'', apertura:{}, resp:{}, res:null, envio:'idle', envioMsg:'' };
+  }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function $(id){ return document.getElementById(id); }
+  function sistemaInfo(c){ return DX.sistemas.filter(function(s){ return s.clave === c; })[0]; }
+
+  /* ---------- Puntaje (misma lógica que apps-script/Codigo.gs) ---------- */
+  function banda(p){
+    for (var i=0;i<DX.bandas.length;i++) if (p <= DX.bandas[i].hasta) return DX.bandas[i];
+    return DX.bandas[DX.bandas.length-1];
+  }
+  function puntos(q, idx){ return q.opciones[idx].indexOf('No aplica') === 0 ? null : 2 - idx; }
+  function evaluar(resp){
+    var res = {}, evaluables = [];
+    DX.sistemas.forEach(function(s){
+      var pts = 0, n = 0, pend = [];
+      DX.preguntas.forEach(function(q){
+        if (q.sistema !== s.clave) return;
+        var p = puntos(q, resp[q.clave]);
+        if (p === null) return;
+        pts += p; n++;
+        if (p < 2) pend.push({ sistema:s.clave, clave:q.clave, pts:p, rec:q.rec[p], libro:q.libro });
+      });
+      if (!n) { res[s.clave] = { pct:null, banda:null, pend:[] }; return; }
+      var exacto = pts / (n*2) * 100;
+      evaluables.push(exacto);
+      var pct = Math.round(exacto);
+      res[s.clave] = { pct:pct, banda:banda(pct), pend:pend };
+    });
+    if (!evaluables.length) res.Global = { pct:null, banda:null };
+    else {
+      var pg = Math.round(evaluables.reduce(function(a,b){ return a+b; },0) / evaluables.length);
+      res.Global = { pct:pg, banda:banda(pg) };
+    }
+    return res;
+  }
+  function libroNota(l){
+    return '<div class="dx-book"><span class="dx-book-h">En el libro <em>' + esc(DX.libroCita) + '</em> · ' + esc(l.ref) + ', p. ' + l.pag + '</span><q>' + esc(l.cita) + '</q></div>';
+  }
+  function resumen(sistema, b){ return DX.resumen[sistema][DX.bandas.indexOf(b)]; }
+  function prioridades(res){
+    var todas = [];
+    DX.sistemas.forEach(function(s){ res[s.clave].pend.forEach(function(p){ todas.push(p); }); });
+    // Primero lo que no existe (0 pts); a igualdad, el sistema con menor porcentaje.
+    return todas.sort(function(a,b){
+      return (a.pts - b.pts) || (res[a.sistema].pct - res[b.sistema].pct);
+    });
+  }
+
+  /* ---------- Render ---------- */
+  function progreso(){
+    var idx = { datos:0, perfil:1, apertura:2 }[state.step];
+    var n, label;
+    if (state.step === 'q'){ n = 3 + state.i; label = 'Pregunta ' + (state.i+1) + ' de ' + NQ; }
+    else { n = idx; label = 'Paso ' + (idx+1) + ' de 3'; }
+    return '<div class="dx-prog"><div class="dx-bar"><i style="width:' + Math.round(n/TOTAL*100) + '%"></i></div>' +
+           '<p class="dx-prog-l" aria-live="polite">' + label + '</p></div>';
+  }
+  function navBtns(atras, sig, sigTxt){
+    return '<div class="dx-nav">' +
+      (atras ? '<button type="button" class="btn btn-ghost" data-dx="back">← Atrás</button>' : '<span></span>') +
+      (sig ? '<button type="button" class="btn btn-primary" data-dx="next">' + sigTxt + '</button>' : '') + '</div>';
+  }
+
+  function vIntro(){
+    return '<div class="dx-card" tabindex="-1" id="dxFocus">' +
+      '<span class="eyebrow">Mini diagnóstico UB</span>' +
+      '<h2 class="dx-title" style="margin-top:14px">Ubica a tu empresa en los tres sistemas de la Metodología UB.</h2>' +
+      '<p class="dx-read">Evaluaremos el sistema <strong>patrimonial</strong> (familia y propiedad), el <strong>empresarial</strong> (gobierno de la empresa) y el <strong>operativo</strong> (dirección y gestión). No hay respuestas buenas ni malas: elige la que mejor describa la situación actual.</p>' +
+      '<p class="dx-note">Al terminar verás tu resultado en pantalla y recibirás el diagnóstico en PDF por correo. Tus respuestas se usan para preparar tu diagnóstico y para que UB Consultores pueda dar seguimiento. Consulta el <a href="#privacidad" target="_blank" rel="noopener">Aviso de privacidad</a>.</p>' +
+      '<div class="dx-nav"><span></span><button type="button" class="btn btn-primary" data-dx="start">Comenzar el diagnóstico →</button></div></div>';
+  }
+
+  function campo(id, etiqueta, val, tipo, extra){
+    return '<div class="dx-field"><label for="'+id+'">'+etiqueta+'</label><input type="'+tipo+'" id="'+id+'" value="'+esc(val)+'" '+(extra||'')+'></div>';
+  }
+  function vDatos(){
+    var d = state.datos;
+    return progreso() + '<div class="dx-card"><h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin-top:0">¿A quién enviamos tu diagnóstico?</h2>' +
+      '<div class="dx-fields">' +
+      campo('dx-nombre','Nombre',d.nombre,'text','autocomplete="name" maxlength="120"') +
+      campo('dx-empresa','Empresa',d.empresa,'text','autocomplete="organization" maxlength="160"') +
+      campo('dx-puesto','Puesto o cargo',d.puesto,'text','autocomplete="organization-title" maxlength="120"') +
+      campo('dx-correo','Correo electrónico',d.correo,'email','autocomplete="email" maxlength="160"') +
+      '</div>' +
+      '<div class="dx-hp" aria-hidden="true"><label for="dx-web">No llenar este campo</label><input type="text" id="dx-web" tabindex="-1" autocomplete="off"></div>' +
+      '<label class="dx-check"><input type="checkbox" id="dx-consent"' + (d.consent?' checked':'') + '><span>Acepto recibir mi diagnóstico por correo y que UB Consultores utilice estos datos para darme seguimiento, conforme al <a href="#privacidad" target="_blank" rel="noopener">Aviso de privacidad</a>.</span></label>' +
+      '<p class="dx-err" id="dxErr" role="alert"></p>' + navBtns(true,true,'Continuar →') + '</div>';
+  }
+
+  function vPerfil(){
+    var h = progreso() + '<div class="dx-card"><h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin-top:0">Cuéntanos sobre ti y tu empresa</h2>' +
+      '<p class="dx-sys-desc" style="margin:-10px 0 24px">Estos datos nos ayudan a interpretar mejor tu diagnóstico.</p>';
+    DX.perfil.forEach(function(p){
+      if (p.tipo === 'parrafo'){
+        h += '<div class="dx-field full dx-group"><label for="dx-'+p.clave+'">'+esc(p.titulo)+' <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink-soft)">(opcional)</span></label>' +
+             '<textarea id="dx-'+p.clave+'" maxlength="1000">'+esc(state.perfil[p.clave]||'')+'</textarea></div>';
+        return;
+      }
+      h += '<fieldset class="dx-group"><legend class="dx-legend">'+esc(p.titulo)+'</legend>';
+      p.opciones.forEach(function(o){
+        var sel = state.perfil[p.clave] === o;
+        h += '<label class="dx-opt'+(sel?' sel':'')+'"><input type="radio" name="'+p.clave+'" value="'+esc(o)+'"'+(sel?' checked':'')+'><span>'+esc(o)+'</span></label>';
+      });
+      if (p.otra){
+        var so = state.perfil[p.clave] === '__otro';
+        h += '<label class="dx-opt'+(so?' sel':'')+'"><input type="radio" name="'+p.clave+'" value="__otro"'+(so?' checked':'')+'><span>Otro</span></label>' +
+             '<input type="text" class="dx-otro" id="dx-otro" maxlength="200" placeholder="Escribe tu motivo" aria-label="Otro motivo" value="'+esc(state.otro)+'">';
+      }
+      h += '</fieldset>';
+    });
+    return h + '<p class="dx-err" id="dxErr" role="alert"></p>' + navBtns(true,true,'Continuar →') + '</div>';
+  }
+
+  function vApertura(){
+    var h = progreso() + '<div class="dx-card"><h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin-top:0">Preguntas de reflexión</h2>' +
+      '<p class="dx-sys-desc" style="margin:-10px 0 24px">No tienen respuesta correcta y son opcionales. Responde con libertad, o continúa sin llenarlas.</p><div class="dx-fields">';
+    DX.apertura.forEach(function(a){
+      h += '<div class="dx-field full"><label for="dx-'+a[0]+'" style="text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink);font-family:var(--font-display)">'+esc(a[1])+'</label>' +
+           '<textarea id="dx-'+a[0]+'" maxlength="1000">'+esc(state.apertura[a[0]]||'')+'</textarea></div>';
+    });
+    return h + '</div>' + navBtns(true,true,'Empezar las preguntas →') + '</div>';
+  }
+
+  function vPregunta(){
+    var q = DX.preguntas[state.i], s = sistemaInfo(q.sistema);
+    var h = progreso() + '<div class="dx-card"><div class="dx-sys-tag">Sistema ' + esc(s.clave) + '</div>' +
+      '<p class="dx-sys-desc">' + esc(s.descripcion) + '</p>' +
+      '<fieldset style="border:0;min-width:0"><legend class="dx-title" id="dxFocus" tabindex="-1">' + esc(q.titulo) + '</legend>';
+    q.opciones.forEach(function(o, k){
+      var sel = state.resp[q.clave] === k;
+      h += '<label class="dx-opt'+(sel?' sel':'')+'"><input type="radio" name="q" value="'+k+'"'+(sel?' checked':'')+'><span>'+esc(o)+'</span></label>';
+    });
+    return h + '</fieldset>' + navBtns(true, state.resp[q.clave] !== undefined, state.i === NQ-1 ? 'Ver mi resultado →' : 'Siguiente →') + '</div>';
+  }
+
+  function vResultado(){
+    var r = state.res, g = r.Global, d = state.datos;
+    var h = '<div class="dx-card"><span class="eyebrow">Tu resultado · ' + esc(d.empresa) + '</span>' +
+      '<h2 class="dx-title" id="dxFocus" tabindex="-1" style="margin:14px 0 0">Resultado global de institucionalización</h2>';
+    if (g.pct === null){
+      h += '<p class="dx-read" style="margin-top:14px">Tus respuestas indican que ningún sistema aplica en la etapa actual de la empresa, por lo que no es posible calcular un porcentaje.</p>';
+    } else {
+      h += '<div class="dx-global"><b>' + g.pct + '%</b><span class="dx-badge" style="background:'+g.banda.color+';color:'+g.banda.texto+'">'+esc(g.banda.etiqueta)+'</span></div>' +
+           '<p class="dx-read">' + esc(g.banda.lectura) + '</p>' +
+           '<p class="dx-top-cta"><a href="' + esc(AGENDA) + '" target="_blank" rel="noopener">Agenda una sesión con UB para revisar estos resultados →</a></p>';
+    }
+    h += '<div class="dx-sys-list">';
+    DX.sistemas.forEach(function(s){
+      var x = r[s.clave];
+      h += '<div class="dx-sys"><div class="dx-sys-h"><strong>Sistema ' + esc(s.clave) + '</strong>' +
+        (x.pct === null ? '<span class="dx-badge" style="background:#E3E6E8;color:#33404A">No evaluable</span>'
+          : '<span class="pct">' + x.pct + '%</span>') + '</div>';
+      if (x.pct !== null){
+        h += '<div class="dx-meter" role="img" aria-label="' + x.pct + ' por ciento"><i style="width:0;background:'+x.banda.color+'" data-w="'+x.pct+'"></i></div>' +
+             '<span class="dx-badge" style="background:'+x.banda.color+';color:'+x.banda.texto+';margin-bottom:10px">'+esc(x.banda.etiqueta)+'</span>' +
+             '<p style="margin-top:8px">' + esc(resumen(s.clave, x.banda)) + '</p>' +
+             '<p class="dx-lect"><strong>Para leer:</strong> ' + DX.lecturas[s.clave].map(function(l){ return esc(l.ref) + ' (p. ' + l.pag + ')'; }).join(' · ') + '</p>';
+      } else {
+        h += '<p style="margin-top:8px">Las respuestas indican que este sistema no aplica en la etapa actual.</p>';
+      }
+      h += '</div>';
+    });
+    h += '</div><p class="dx-note">Los colores siguen la lógica del semáforo institucional UB que Alfonso Urrea describe en <em>' + esc(DX.libroCita) + '</em> (' + esc(DX.semaforo.ref) + ', p. ' + DX.semaforo.pag + ').</p>';
+
+    var pr = prioridades(r);
+    if (pr.length){
+      h += '<h3 class="dx-h3">Por dónde empezar</h3><ol class="dx-prio">';
+      pr.slice(0,5).forEach(function(p){
+        h += '<li><div>' + esc(p.rec) + '<small>Sistema ' + esc(p.sistema) + (p.pts === 0 ? ' · Prioridad alta' : ' · Por formalizar') + '</small>' + libroNota(p.libro) + '</div></li>';
+      });
+      h += '</ol>';
+      if (pr.length > 5){
+        h += '<details class="dx-more"><summary>Ver las ' + pr.length + ' recomendaciones por sistema</summary><div class="dx-more-body">';
+        DX.sistemas.forEach(function(s){
+          if (!r[s.clave].pend.length) return;
+          h += '<h4>Sistema ' + esc(s.clave) + '</h4><ul>';
+          r[s.clave].pend.forEach(function(p){ h += '<li>' + esc(p.rec) + libroNota(p.libro) + '</li>'; });
+          h += '</ul>';
+        });
+        h += '</div></details>';
+      }
+    } else if (g.pct !== null){
+      h += '<h3 class="dx-h3">Por dónde empezar</h3><p class="dx-read">No detectamos acciones pendientes. Mantén vivas las prácticas actuales y revísalas con periodicidad.</p>';
+    }
+    h += '</div>' +
+      '<div class="dx-envio" id="dxEnvio" role="status" aria-live="polite"></div>' +
+      vRecursos() +
+      '<div class="dx-cta on-dark"><span class="eyebrow on-dark">Siguiente paso</span>' +
+      '<h3 style="margin-top:12px">Agenda tu Diagnóstico Profundo con UB.</h3>' +
+      '<p>Este resultado se basa solo en tus respuestas. En una sesión con nosotros revisamos estos hallazgos contigo y definimos por dónde empezar en ' + esc(d.empresa) + '.</p>' +
+      '<a class="btn btn-lime" href="' + esc(AGENDA) + '" target="_blank" rel="noopener">Agendar mi sesión →</a></div>' +
+      '<button type="button" class="dx-restart" data-dx="restart">Volver a hacer el diagnóstico</button>';
+    return h;
+  }
+
+  function vRecursos(){
+    var h = '<div class="dx-res"><span class="eyebrow">Profundiza</span>' +
+      '<h3 class="dx-h3" style="margin-top:12px">Lee y escucha a Alfonso Urrea.</h3>' +
+      '<p class="dx-read">Las recomendaciones de este diagnóstico se basan en <em>' + esc(DX.libroCita) + '</em>. Ahí encontrarás cada tema explicado a detalle, con casos reales.</p>' +
+      '<div class="dx-books">';
+    DX.libros.forEach(function(l){
+      h += '<a class="dx-bk" href="' + esc(l.url) + '" target="_blank" rel="noopener"><strong>' + esc(l.titulo) + '</strong><span>' + esc(l.nota) + '</span><em>Ver en Amazon →</em></a>';
+    });
+    h += '</div><h4 class="dx-h4">Videos y podcasts</h4><ul class="dx-vids">';
+    DX.recursos.forEach(function(r){
+      h += '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.titulo) + '</a><span>' + esc(r.anio) + '</span></li>';
+    });
+    return h + '</ul></div>';
+  }
+
+  function pintarEnvio(){
+    var el = $('dxEnvio'); if (!el) return;
+    var c = esc(state.datos.correo);
+    el.className = 'dx-envio' + (state.envio === 'ok' ? ' ok' : state.envio === 'error' ? ' error' : '');
+    if (state.envio === 'enviando') el.innerHTML = '<span>Enviando tu diagnóstico en PDF a <strong>' + c + '</strong>…</span>';
+    else if (state.envio === 'ok') el.innerHTML = '<span>Listo: enviamos tu diagnóstico en PDF, con recomendaciones, a <strong>' + c + '</strong>. Si no lo ves en unos minutos, revisa tu carpeta de spam.</span>';
+    else if (state.envio === 'error') el.innerHTML = '<span>' + esc(state.envioMsg || 'No pudimos enviar el PDF a tu correo.') + ' Tu resultado sigue disponible aquí.</span><button type="button" class="btn btn-ghost" data-dx="retry">Reintentar envío</button>';
+    else el.innerHTML = '';
+  }
+
+  function render(enfocar){
+    var v = { intro:vIntro, datos:vDatos, perfil:vPerfil, apertura:vApertura, q:vPregunta, result:vResultado }[state.step];
+    root.innerHTML = v();
+    if (state.step === 'result'){
+      pintarEnvio();
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        root.querySelectorAll('.dx-meter i').forEach(function(i){ i.style.width = i.getAttribute('data-w') + '%'; });
+      }); });
+    }
+    if (enfocar){
+      var f = $('dxFocus');
+      if (f) f.focus({ preventScroll:true });
+      var top = root.getBoundingClientRect().top + window.pageYOffset - 110;
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'auto' });
+    }
+  }
+
+  /* ---------- Lectura de formularios ---------- */
+  function guardar(){
+    var v = function(id){ var e = $(id); return e ? e.value : null; };
+    if (state.step === 'datos'){
+      var d = state.datos;
+      ['nombre','empresa','puesto','correo'].forEach(function(k){ var x = v('dx-'+k); if (x !== null) d[k] = x.replace(/\s+/g,' ').trim(); });
+      var c = $('dx-consent'); if (c) d.consent = c.checked;
+    } else if (state.step === 'perfil'){
+      DX.perfil.forEach(function(p){
+        if (p.tipo === 'parrafo'){ var t = v('dx-'+p.clave); if (t !== null) state.perfil[p.clave] = t.trim(); return; }
+        var m = root.querySelector('input[name="'+p.clave+'"]:checked');
+        if (m) state.perfil[p.clave] = m.value;
+      });
+      var o = v('dx-otro'); if (o !== null) state.otro = o.trim();
+    } else if (state.step === 'apertura'){
+      DX.apertura.forEach(function(a){ var t = v('dx-'+a[0]); if (t !== null) state.apertura[a[0]] = t.trim(); });
+    }
+  }
+  function error(msg){ var e = $('dxErr'); if (e) e.textContent = msg; return false; }
+
+  function validar(){
+    if (state.step === 'datos'){
+      var d = state.datos;
+      if (!d.nombre || !d.empresa || !d.puesto || !d.correo) return error('Completa todos los campos.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.correo)) return error('Escribe un correo electrónico válido.');
+      if (!d.consent) return error('Para enviarte el diagnóstico necesitamos que aceptes el uso de tus datos.');
+    } else if (state.step === 'perfil'){
+      for (var i=0;i<DX.perfil.length;i++){
+        var p = DX.perfil[i];
+        if (p.tipo === 'opcion' && p.requerido && !state.perfil[p.clave]) return error('Responde: ' + p.titulo);
+      }
+      if (state.perfil.PF_MOTIVO === '__otro' && !state.otro) return error('Escribe tu motivo en el campo "Otro".');
+    }
+    return true;
+  }
+
+  /* ---------- Navegación ---------- */
+  function siguiente(){
+    guardar();
+    if (!validar()) return;
+    if (state.step === 'datos') state.step = 'perfil';
+    else if (state.step === 'perfil') state.step = 'apertura';
+    else if (state.step === 'apertura'){ state.step = 'q'; state.i = 0; }
+    else if (state.step === 'q'){
+      if (state.i < NQ-1) state.i++;
+      else { terminar(); return; }
+    }
+    render(true);
+  }
+  function atras(){
+    guardar();
+    if (state.step === 'datos') state.step = 'intro';
+    else if (state.step === 'perfil') state.step = 'datos';
+    else if (state.step === 'apertura') state.step = 'perfil';
+    else if (state.step === 'q'){
+      if (state.i > 0) state.i--; else state.step = 'apertura';
+    }
+    render(true);
+  }
+
+  function terminar(){
+    state.res = evaluar(state.resp);
+    state.step = 'result';
+    render(true);
+    enviar();
+  }
+
+  function enviar(){
+    state.envio = 'enviando'; pintarEnvio();
+    if (!ENDPOINT){
+      console.warn('Diagnóstico: falta configurar ENDPOINT (URL de la app web de Apps Script).');
+      state.envio = 'error'; state.envioMsg = 'El envío por correo no está disponible en este momento.'; pintarEnvio(); return;
+    }
+    var perfil = {};
+    DX.perfil.forEach(function(p){
+      var val = state.perfil[p.clave] || '';
+      perfil[p.clave] = val === '__otro' ? 'Otro: ' + state.otro : val;
+    });
+    var d = state.datos;
+    var cuerpo = JSON.stringify({ nombre:d.nombre, empresa:d.empresa, puesto:d.puesto, correo:d.correo,
+      perfil:perfil, apertura:state.apertura, respuestas:state.resp, website:($('dx-web')||{}).value || '' });
+    // text/plain evita la petición previa (preflight) que Apps Script no responde.
+    fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body:cuerpo })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        state.envio = j && j.ok ? 'ok' : 'error';
+        state.envioMsg = j && j.error ? j.error : '';
+        pintarEnvio();
+      })
+      .catch(function(){ state.envio = 'error'; state.envioMsg = 'No pudimos enviar el PDF a tu correo.'; pintarEnvio(); });
+  }
+
+  /* ---------- Eventos ---------- */
+  root.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-dx]'); if (!b) return;
+    var a = b.getAttribute('data-dx');
+    if (a === 'start'){ state.step = 'datos'; render(true); }
+    else if (a === 'next') siguiente();
+    else if (a === 'back') atras();
+    else if (a === 'retry') enviar();
+    else if (a === 'restart'){ state = nuevo(); render(true); }
+  });
+  root.addEventListener('change', function(ev){
+    var t = ev.target;
+    if (t.type !== 'radio') return;
+    if (state.step === 'q'){
+      var q = DX.preguntas[state.i], i = state.i;
+      state.resp[q.clave] = parseInt(t.value, 10);
+      root.querySelectorAll('.dx-opt').forEach(function(l){ l.classList.toggle('sel', l.contains(t)); });
+      var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setTimeout(function(){ if (state.step === 'q' && state.i === i) siguiente(); }, rm ? 0 : 260);
+    } else if (state.step === 'perfil'){
+      root.querySelectorAll('input[name="'+t.name+'"]').forEach(function(r){ r.closest('.dx-opt').classList.toggle('sel', r.checked); });
+      if (t.name === 'PF_MOTIVO' && t.value === '__otro'){ var o = $('dx-otro'); if (o) o.focus(); }
+    }
+  });
+  root.addEventListener('input', function(ev){
+    if (ev.target.id === 'dx-otro'){
+      var r = root.querySelector('input[name="PF_MOTIVO"][value="__otro"]');
+      if (r && !r.checked){ r.checked = true; r.dispatchEvent(new Event('change', { bubbles:true })); }
+    }
+  });
+
+  var fab = document.getElementById('dxFab');
+  function fabVisible(){ if (fab) fab.hidden = (location.hash === '#diagnostico'); }
+  window.addEventListener('hashchange', fabVisible);
+  fabVisible();
+
+  render(false);
 })();
 </script>
 
