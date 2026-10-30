@@ -379,7 +379,7 @@ function avisarEquipo_(lead, res, ss) {
     }
     lineas.push('', 'Siguiente paso sugerido: ' + L.siguiente);
     if (reporte) {
-      lineas.push('', 'Se adjunta el reporte interno en PDF, con las respuestas completas del cuestionario.');
+      lineas.push('', 'Se adjunta el reporte interno en PDF, con los resultados, el perfil, las respuestas abiertas y las 20 preguntas contestadas.');
     } else {
       // Sin PDF, el correo lleva lo esencial; las respuestas completas están en la hoja de resultados.
       lineas.push('', 'No se pudo generar el PDF del reporte; las respuestas completas están en la hoja de resultados.', '',
@@ -395,7 +395,7 @@ function avisarEquipo_(lead, res, ss) {
     const opciones = {
       to: CONFIG.CORREO_INTERNO,
       subject: 'Nuevo lead: ' + lead.empresa + ' (' + (g.pct === null ? 'N/E' : g.pct + '% · ' + g.banda.etiqueta) + ')',
-      body: lineas.join('\n'), name: CONFIG.FIRMA
+      body: lineas.join('\n'), htmlBody: htmlAviso_(lead, res, L, !!reporte), name: CONFIG.FIRMA
     };
     if (reporte) opciones.attachments = [reporte];
     MailApp.sendEmail(opciones);
