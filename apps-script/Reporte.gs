@@ -2,9 +2,10 @@
  * REPORTE INTERNO DEL PRE-DIAGNÓSTICO (para el equipo de UB)
  * ---------------------------------------------------------------------------
  * Se adjunta al aviso de "Nuevo lead". Usa la misma hoja membretada que el PDF
- * del prospecto (ver Pdf.gs) e incluye: ficha de contacto, lectura rápida de lo
- * que necesitaría la empresa, resultados, las 20 respuestas una por una y lo que
- * el prospecto escribió en sus propias palabras.
+ * del prospecto (ver Pdf.gs) e incluye: ficha de contacto, resultados, las 20
+ * respuestas una por una y lo que el prospecto escribió en sus propias palabras.
+ * La lectura rápida de lo que necesitaría la empresa va en el cuerpo del correo
+ * (ver avisarEquipo_ en Codigo.gs), no en el PDF.
  *
  * Si falla la generación, el aviso se envía igual, sin adjunto, y el error queda
  * en la hoja "Log".
@@ -87,7 +88,6 @@ function generarReporteInterno_(lead, res) {
 
 function llenarReporte_(body, lead, res) {
   prepararCuerpo_(body);
-  const L = lecturaRapida_(lead, res);
   const sinRespuesta = '(sin respuesta)';
 
   // --- Encabezado y ficha ---
@@ -97,30 +97,6 @@ function llenarReporte_(body, lead, res) {
   [['Contacto', lead.nombre], ['Puesto', lead.puesto], ['Correo', lead.correo]].forEach(function (f) {
     linea_(body, f[0], f[1]);
   });
-
-  // --- Lectura rápida ---
-  titulo_(body, 'Lectura rápida');
-  const caja = cajaEn_(body, PDF.GRIS, 12);
-  estilo_(primerParrafo_(caja, L.titulares[0]), { size: 11, bold: true, color: PDF.AZUL, despues: 3 });
-  L.titulares.slice(1).forEach(function (t) { estilo_(caja.appendParagraph(t), { size: 9, despues: 6 }); });
-
-  etiqueta_(caja, 'QUÉ NECESITARÍA');
-  L.necesidades.forEach(function (n) { vineta_(caja, n.sistema + ' (' + n.pct + '%): ' + n.texto, n.sistema.length + 6 + String(n.pct).length); });
-
-  if (L.alertas.length) {
-    etiqueta_(caja, 'ALERTAS');
-    L.alertas.forEach(function (a) { vineta_(caja, a, 0); });
-  }
-  if (L.prioridades.length) {
-    etiqueta_(caja, 'PRIORIDADES INMEDIATAS');
-    L.prioridades.forEach(function (p) { vineta_(caja, p.rec, 0); });
-  }
-  if (L.perfil.length) {
-    etiqueta_(caja, 'PERFIL (HIPÓTESIS PARA VALIDAR)');
-    L.perfil.forEach(function (t) { vineta_(caja, t, 0); });
-  }
-  etiqueta_(caja, 'SIGUIENTE PASO SUGERIDO');
-  estilo_(caja.appendParagraph(L.siguiente), { size: 9, bold: true, despues: 0 });
 
   // --- Resultados ---
   titulo_(body, 'Resultado del pre-diagnóstico');
@@ -164,18 +140,6 @@ function linea_(cont, etiqueta, valor) {
   return p;
 }
 
-/** Subtítulo en mayúsculas pequeñas dentro de la caja de lectura rápida. */
-function etiqueta_(cont, texto) {
-  return estilo_(cont.appendParagraph(texto), { size: 7, bold: true, color: PDF.AZUL, antes: 8, despues: 2 });
-}
-
-/** Viñeta con sangría francesa. Si largoNegritas > 0, esa parte inicial va en negritas. */
-function vineta_(cont, texto, largoNegritas) {
-  const p = estilo_(cont.appendParagraph('•  ' + texto), { size: 9, despues: 3, sangria: 12 });
-  if (largoNegritas > 0) p.editAsText().setBold(3, 3 + largoNegritas - 1, true);
-  return p;
-}
-
 /** Tabla de las respuestas de un sistema: #, pregunta, respuesta elegida y valoración. */
 function tablaRespuestas_(body, sistema, lead) {
   const colores = { 'Ausente': '#B93A32', 'Parcial': '#8A6D00', 'Sólido': '#23774A', 'No aplica': '#777777' };
@@ -205,4 +169,48 @@ function tablaRespuestas_(body, sistema, lead) {
       });
     });
   });
+}
+
+/** Cuerpo HTML del aviso "Nuevo lead": ficha, resultados y lectura rápida de lo que necesitaría la empresa. */
+function htmlAviso_(lead, res, L, hayReporte) {
+  const g = res.Global;
+  const h3 = function (t) { return '<h3 style="color:#06536B;font-size:14px;margin:20px 0 6px 0">' + esc_(t) + '</h3>'; };
+  const lista = function (items) {
+    return '<ul style="margin:0;padding-left:18px">' + items.map(function (t) { return '<li style="margin:0 0 6px 0">' + esc_(t) + '</li>'; }).join('') + '</ul>';
+  };
+  const filas = SISTEMAS.map(function (s) {
+    const r = res[s];
+    return '<tr><td style="padding:8px;border-bottom:1px solid #e5e5e5"><strong>Sistema ' + esc_(s) + '</strong></td>' +
+      '<td style="padding:8px;border-bottom:1px solid #e5e5e5;text-align:center;font-weight:bold">' + (r.pct === null ? '—' : r.pct + '%') + '</td>' +
+      '<td style="padding:8px;border-bottom:1px solid #e5e5e5;text-align:right">' + (r.pct === null ? 'No evaluable' : insignia_(r.banda)) + '</td></tr>';
+  }).join('');
+
+  let html = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:620px;margin:auto;color:#222;line-height:1.5">' +
+    '<p style="font-size:11px;color:#06536B;font-weight:bold;letter-spacing:1px;margin:0">NUEVO LEAD · MINI DIAGNÓSTICO</p>' +
+    '<h2 style="color:#06536B;margin:4px 0 2px 0">' + esc_(lead.empresa) + '</h2>' +
+    '<p style="margin:0 0 14px 0;color:#555">' + esc_(lead.nombre) + ' · ' + esc_(lead.puesto) + ' · ' +
+    '<a href="mailto:' + esc_(lead.correo) + '" style="color:#06536B">' + esc_(lead.correo) + '</a></p>' +
+    '<p style="margin:0 0 6px 0">Resultado global: ' + (g.pct === null ? '<strong>No evaluable</strong>' : '<strong style="font-size:20px">' + g.pct + '%</strong> ' + insignia_(g.banda)) + '</p>' +
+    '<table style="width:100%;border-collapse:collapse">' + filas + '</table>' +
+    h3('Lectura rápida') +
+    '<p style="margin:0 0 4px 0"><strong>' + esc_(L.titulares[0]) + '</strong></p>' +
+    L.titulares.slice(1).map(function (t) { return '<p style="margin:0 0 4px 0">' + esc_(t) + '</p>'; }).join('') +
+    h3('Qué necesitaría') + lista(L.necesidades.map(function (n) { return n.sistema + ' (' + n.pct + '%): ' + n.texto; }));
+  if (L.alertas.length) html += h3('Alertas') + lista(L.alertas);
+  if (L.prioridades.length) html += h3('Prioridades inmediatas') + lista(L.prioridades.map(function (p) { return p.rec; }));
+  if (L.perfil.length) html += h3('Perfil (hipótesis para validar)') + lista(L.perfil);
+  html += h3('Siguiente paso sugerido') + '<p style="margin:0"><strong>' + esc_(L.siguiente) + '</strong></p>';
+
+  if (hayReporte) {
+    html += '<p style="margin:22px 0 0 0;padding:10px 12px;background:#f3f5f6;font-size:13px">Se adjunta el <strong>reporte interno en PDF</strong>, con los resultados, el perfil, las respuestas abiertas y las 20 preguntas contestadas.</p>';
+  } else {
+    const p = lead.perfil;
+    html += '<p style="margin:22px 0 6px 0;padding:10px 12px;background:#fff6da;font-size:13px">No se pudo generar el PDF del reporte. Las respuestas completas están en la hoja de resultados.</p>' +
+      h3('Perfil') + lista([
+        'Familia propietaria: ' + (p.PF_FAMILIA || '(sin respuesta)'), 'Generación: ' + (p.PF_GENERACION || '(sin respuesta)'),
+        'Años en la empresa: ' + (p.PF_ANTIGUEDAD || '(sin respuesta)'), 'Motivo principal: ' + (p.PF_MOTIVO || '(sin respuesta)'),
+        'Preocupación principal: ' + (p.PF_PREOCUPACION || '(sin respuesta)')]) +
+      h3('Preguntas de apertura') + lista(DX.apertura.map(function (a) { return a[1] + ' → ' + (lead.apertura[a[0]] || '(sin respuesta)'); }));
+  }
+  return html + '</div>';
 }

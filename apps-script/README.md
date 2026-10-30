@@ -38,12 +38,16 @@ después de cada envío. Si cambias el membrete, edita ese mismo Doc; si cambias
 
 ## Reporte interno para el equipo de UB
 
-`Reporte.gs` genera, para cada diagnóstico, un PDF de uso interno sobre la misma hoja membretada y lo adjunta al aviso
-"Nuevo lead" que llega a `CORREO_INTERNO`. Incluye: ficha de contacto, **lectura rápida** de lo que necesitaría la empresa,
-resultados por sistema, perfil de quien respondió, sus respuestas abiertas y las 20 preguntas con la opción elegida y su
-valoración (Sólido, Parcial o Ausente). La lectura rápida se arma con reglas simples y los textos de `datos.json`
-(`lecturaRapida`); son hipótesis de trabajo para validar en el Diagnóstico Profundo. Si el PDF falla, el aviso se envía
-igual, sin adjunto, y el error queda en la hoja "Log". El prospecto sigue recibiendo su propio PDF, sin cambios.
+Cada diagnóstico genera un aviso "Nuevo lead" para `CORREO_INTERNO` con dos partes:
+
+- **Cuerpo del correo:** la **lectura rápida** de lo que necesitaría la empresa (qué necesitaría por sistema, alertas, prioridades
+  inmediatas, perfil y siguiente paso sugerido), con los resultados por sistema. Se arma con reglas simples y los textos de
+  `datos.json` (`lecturaRapida`); son hipótesis de trabajo para validar en el Diagnóstico Profundo.
+- **PDF adjunto** (`Reporte.gs`, sobre la misma hoja membretada): ficha de contacto, resultados, perfil de quien respondió, sus
+  respuestas abiertas y las 20 preguntas con la opción elegida y su valoración (Sólido, Parcial o Ausente).
+
+Si el PDF falla, el aviso se envía igual, sin adjunto y con el perfil y las respuestas abiertas en el cuerpo; el error queda en la
+hoja "Log". El prospecto sigue recibiendo su propio PDF, sin cambios.
 
 ## Citas del libro
 
