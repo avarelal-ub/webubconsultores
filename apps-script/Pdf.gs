@@ -60,15 +60,18 @@ function pdfDesdePlantilla_(lead, res, nombre) {
 // ---------------------------------------------------------------------------
 // Contenido
 // ---------------------------------------------------------------------------
-function llenarDoc_(body, lead, res) {
+/** Márgenes medidos para el membrete de UB y párrafo inicial de la plantilla. */
+function prepararCuerpo_(body) {
   body.setMarginTop(PDF.MARGEN.arriba);
   body.setMarginBottom(PDF.MARGEN.abajo);
   body.setMarginLeft(PDF.MARGEN.lados);
   body.setMarginRight(PDF.MARGEN.lados);
   // No se vacía el cuerpo de la plantilla: su párrafo vacío inicial se conserva (por si el membrete está anclado ahí) y se hace diminuto.
   estilo_(body.getParagraphs()[0], { size: 1, despues: 0, interlineado: 1 });
+}
 
-  const g = res.Global;
+function llenarDoc_(body, lead, res) {
+  prepararCuerpo_(body);
 
   // --- Portada del resultado ---
   parrafo_(body, 'DIAGNÓSTICO DE INSTITUCIONALIZACIÓN', { size: 8, bold: true, color: PDF.AZUL, despues: 4 });
@@ -80,40 +83,7 @@ function llenarDoc_(body, lead, res) {
   arriba.editAsText().setBold(ini, arriba.getText().length - 1, true);
   enlazar_(arriba, ini, arriba.getText().length - 1, CONFIG.URL_AGENDA, PDF.AZUL);
 
-  const caja = cajaEn_(body, PDF.GRIS, 14);
-  estilo_(primerParrafo_(caja, 'RESULTADO GLOBAL'), { size: 8, bold: true, despues: 2 });
-  if (g.pct === null) {
-    estilo_(caja.appendParagraph('No evaluable'), { size: 20, bold: true, despues: 4 });
-  } else {
-    estilo_(caja.appendParagraph(g.pct + '%'), { size: 34, bold: true, color: '#12181D', despues: 4, interlineado: 1.1 });
-    chip_(caja.appendParagraph(' ' + g.banda.etiqueta + ' '), g.banda, { despues: 8 });
-    estilo_(caja.appendParagraph(g.banda.lectura), { size: 10, despues: 0 });
-  }
-
-  // --- Resumen por sistema ---
-  // Entre dos tablas seguidas Google Docs inserta un párrafo vacío (hueco grande), por eso cada sistema
-  // lleva el nombre y el % en un párrafo, la descripción en otro y una sola tabla: la barra.
-  SISTEMAS.forEach(function (s, i) {
-    const r = res[s];
-    const desc = DX.sistemas.filter(function (x) { return x.clave === s; })[0].descripcion;
-    const t = parrafo_(body, 'Sistema ' + s + (r.pct === null ? '' : '   ' + r.pct + '%'), { size: 12, bold: true, color: PDF.AZUL, antes: i === 0 ? 14 : 8, despues: 0, juntoConSiguiente: true });
-    if (r.pct !== null) {
-      const ini = t.getText().indexOf('   ');
-      t.editAsText().setForegroundColor(ini, t.getText().length - 1, '#12181D');
-      t.editAsText().setFontSize(ini, t.getText().length - 1, 14);
-    }
-    parrafo_(body, desc, { size: 8, despues: 3, juntoConSiguiente: true });
-    if (r.pct !== null) {
-      barra_(body, r.pct, r.banda.color);
-      chip_(parrafo_(body, ' ' + r.banda.etiqueta + ' ', {}), r.banda, { antes: 4, despues: 2 });
-      parrafo_(body, resumenDe_(s, r.banda), { size: 9, despues: 4 });
-    } else {
-      parrafo_(body, 'Las respuestas indican que este sistema no aplica en la etapa actual de la empresa.', { size: 9, despues: 4 });
-    }
-  });
-
-  parrafo_(body, 'Los colores siguen el semáforo institucional UB que Alfonso Urrea describe en ' + DX.libroCita +
-    ' (' + DX.semaforo.ref + ', p. ' + DX.semaforo.pag + ').', { size: 8, italic: true, despues: 0 });
+  bloqueResultados_(body, res);
 
   // --- Recomendaciones por sistema ---
   titulo_(body, 'Recomendaciones por sistema');
@@ -170,6 +140,48 @@ function llenarDoc_(body, lead, res) {
 }
 
 // ---------------------------------------------------------------------------
+// Bloque de resultados (lo usan el PDF del prospecto y el reporte interno)
+// ---------------------------------------------------------------------------
+/** Resultado global, barra y lectura de cada sistema, y la nota del semáforo. */
+function bloqueResultados_(body, res) {
+  const g = res.Global;
+  const caja = cajaEn_(body, PDF.GRIS, 14);
+  estilo_(primerParrafo_(caja, 'RESULTADO GLOBAL'), { size: 8, bold: true, despues: 2 });
+  if (g.pct === null) {
+    estilo_(caja.appendParagraph('No evaluable'), { size: 20, bold: true, despues: 4 });
+  } else {
+    estilo_(caja.appendParagraph(g.pct + '%'), { size: 34, bold: true, color: '#12181D', despues: 4, interlineado: 1.1 });
+    chip_(caja.appendParagraph(' ' + g.banda.etiqueta + ' '), g.banda, { despues: 8 });
+    estilo_(caja.appendParagraph(g.banda.lectura), { size: 10, despues: 0 });
+  }
+
+  // --- Resumen por sistema ---
+  // Entre dos tablas seguidas Google Docs inserta un párrafo vacío (hueco grande), por eso cada sistema
+  // lleva el nombre y el % en un párrafo, la descripción en otro y una sola tabla: la barra.
+  SISTEMAS.forEach(function (s, i) {
+    const r = res[s];
+    const desc = DX.sistemas.filter(function (x) { return x.clave === s; })[0].descripcion;
+    const t = parrafo_(body, 'Sistema ' + s + (r.pct === null ? '' : '   ' + r.pct + '%'), { size: 12, bold: true, color: PDF.AZUL, antes: i === 0 ? 14 : 8, despues: 0, juntoConSiguiente: true });
+    if (r.pct !== null) {
+      const ini = t.getText().indexOf('   ');
+      t.editAsText().setForegroundColor(ini, t.getText().length - 1, '#12181D');
+      t.editAsText().setFontSize(ini, t.getText().length - 1, 14);
+    }
+    parrafo_(body, desc, { size: 8, despues: 3, juntoConSiguiente: true });
+    if (r.pct !== null) {
+      barra_(body, r.pct, r.banda.color);
+      chip_(parrafo_(body, ' ' + r.banda.etiqueta + ' ', {}), r.banda, { antes: 4, despues: 2 });
+      parrafo_(body, resumenDe_(s, r.banda), { size: 9, despues: 4 });
+    } else {
+      parrafo_(body, 'Las respuestas indican que este sistema no aplica en la etapa actual de la empresa.', { size: 9, despues: 4 });
+    }
+  });
+
+  parrafo_(body, 'Los colores siguen el semáforo institucional UB que Alfonso Urrea describe en ' + DX.libroCita +
+    ' (' + DX.semaforo.ref + ', p. ' + DX.semaforo.pag + ').', { size: 8, italic: true, despues: 0 });
+}
+
+// ---------------------------------------------------------------------------
 // Piezas de diseño
 // ---------------------------------------------------------------------------
 function estilo_(p, o) {
@@ -184,7 +196,7 @@ function estilo_(p, o) {
   p.setSpacingBefore(o.antes || 0);
   p.setSpacingAfter(o.despues === undefined ? 6 : o.despues);
   p.setLineSpacing(o.interlineado || 1.2);
-  p.setIndentStart(0);
+  p.setIndentStart(o.sangria || 0);
   p.setIndentFirstLine(0);
   // "Mantener con el siguiente" evita títulos solos al final de una página (si esta versión de la API lo tiene).
   if (o.juntoConSiguiente && typeof p.setKeepWithNext === 'function') p.setKeepWithNext(true);

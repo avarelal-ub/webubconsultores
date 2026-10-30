@@ -350,27 +350,55 @@ function avisarEquipo_(lead, res, ss) {
   try {
     const g = res.Global;
     const p = lead.perfil;
-    const cuerpo =
-      'Nuevo lead del mini diagnóstico\n\n' +
-      'Nombre: ' + lead.nombre + '\nEmpresa: ' + lead.empresa + '\nPuesto: ' + lead.puesto + '\nCorreo: ' + lead.correo + '\n\n' +
-      'Perfil:\n' +
-      '- Familia propietaria: ' + (p.PF_FAMILIA || '(sin respuesta)') + '\n' +
-      '- Generación: ' + (p.PF_GENERACION || '(sin respuesta)') + '\n' +
-      '- Años en la empresa: ' + (p.PF_ANTIGUEDAD || '(sin respuesta)') + '\n' +
-      '- Motivo principal: ' + (p.PF_MOTIVO || '(sin respuesta)') + '\n' +
-      '- Preocupación principal: ' + (p.PF_PREOCUPACION || '(sin respuesta)') + '\n\n' +
-      'Global: ' + etiquetaGlobal_(res) + '\n' +
-      SISTEMAS.map(function (s) {
-        const r = res[s];
-        return s + ': ' + (r.pct === null ? 'No evaluable' : r.pct + '% · ' + r.banda.etiqueta);
-      }).join('\n') + '\n\n' +
-      'Preguntas de apertura:\n' +
-      DX.apertura.map(function (a) { return a[1] + '\n  → ' + (lead.apertura[a[0]] || '(sin respuesta)'); }).join('\n');
-    MailApp.sendEmail({
+    const L = lecturaRapida_(lead, res);
+    const reporte = generarReporteInterno_(lead, res); // PDF con membrete; null si no se pudo generar
+    const lineas = [
+      'Nuevo lead del mini diagnóstico', '',
+      'Nombre: ' + lead.nombre, 'Empresa: ' + lead.empresa, 'Puesto: ' + lead.puesto, 'Correo: ' + lead.correo, '',
+      'RESULTADO',
+      'Global: ' + etiquetaGlobal_(res)
+    ].concat(SISTEMAS.map(function (s) {
+      const r = res[s];
+      return s + ': ' + (r.pct === null ? 'No evaluable' : r.pct + '% · ' + r.banda.etiqueta);
+    }));
+    lineas.push('', 'LECTURA RÁPIDA');
+    L.titulares.forEach(function (t) { lineas.push(t); });
+    lineas.push('', 'Qué necesitaría:');
+    L.necesidades.forEach(function (n) { lineas.push('- ' + n.sistema + ' (' + n.pct + '%): ' + n.texto); });
+    if (L.alertas.length) {
+      lineas.push('', 'Alertas:');
+      L.alertas.forEach(function (a) { lineas.push('- ' + a); });
+    }
+    if (L.prioridades.length) {
+      lineas.push('', 'Prioridades inmediatas:');
+      L.prioridades.forEach(function (x) { lineas.push('- ' + x.rec); });
+    }
+    if (L.perfil.length) {
+      lineas.push('', 'Perfil (hipótesis para validar):');
+      L.perfil.forEach(function (t) { lineas.push('- ' + t); });
+    }
+    lineas.push('', 'Siguiente paso sugerido: ' + L.siguiente);
+    if (reporte) {
+      lineas.push('', 'Se adjunta el reporte interno en PDF, con las respuestas completas del cuestionario.');
+    } else {
+      // Sin PDF, el correo lleva lo esencial; las respuestas completas están en la hoja de resultados.
+      lineas.push('', 'No se pudo generar el PDF del reporte; las respuestas completas están en la hoja de resultados.', '',
+        'Perfil:',
+        '- Familia propietaria: ' + (p.PF_FAMILIA || '(sin respuesta)'),
+        '- Generación: ' + (p.PF_GENERACION || '(sin respuesta)'),
+        '- Años en la empresa: ' + (p.PF_ANTIGUEDAD || '(sin respuesta)'),
+        '- Motivo principal: ' + (p.PF_MOTIVO || '(sin respuesta)'),
+        '- Preocupación principal: ' + (p.PF_PREOCUPACION || '(sin respuesta)'), '',
+        'Preguntas de apertura:');
+      DX.apertura.forEach(function (a) { lineas.push(a[1], '  → ' + (lead.apertura[a[0]] || '(sin respuesta)')); });
+    }
+    const opciones = {
       to: CONFIG.CORREO_INTERNO,
-      subject: 'Nuevo lead: ' + lead.empresa + ' (' + (g.pct === null ? 'N/E' : g.pct + '%') + ')',
-      body: cuerpo, name: CONFIG.FIRMA
-    });
+      subject: 'Nuevo lead: ' + lead.empresa + ' (' + (g.pct === null ? 'N/E' : g.pct + '% · ' + g.banda.etiqueta) + ')',
+      body: lineas.join('\n'), name: CONFIG.FIRMA
+    };
+    if (reporte) opciones.attachments = [reporte];
+    MailApp.sendEmail(opciones);
   } catch (err) {
     registrarError_(ss, 'Fallo al avisar al equipo: ' + err.message);
   }
