@@ -632,5 +632,53 @@ const DX = {
    "anio": "2024",
    "url": "https://www.youtube.com/watch?v=PKlbqA2wdSs"
   }
- ]
+ ],
+ "lecturaRapida": {
+  "necesidades": {
+   "Patrimonial": [
+    "Necesita construir desde cero el gobierno de la familia propietaria: Asamblea de Accionistas, Consejo de Familia, Protocolo Familiar y Acuerdo de Accionistas.",
+    "Necesita formalizar y documentar los acuerdos familiares que hoy son informales: protocolo firmado, reglas de transmisión de acciones y criterios de ingreso a la empresa.",
+    "Su gobierno patrimonial es una base sólida. Necesita mantenerlo vivo, con revisiones periódicas, y preparar a la siguiente generación."
+   ],
+   "Empresarial": [
+    "Necesita instalar un Consejo de Administración con facultades reales y comités de control (auditoría, remuneraciones) que sirvan de contrapeso a la Dirección General.",
+    "Necesita fortalecer los órganos que ya existen: facultades por escrito, manual de funcionamiento, consejeros independientes y comités formales.",
+    "Su gobierno corporativo es sólido. Necesita evaluar su desempeño con periodicidad y cuidar la independencia del Consejo."
+   ],
+   "Operativo": [
+    "Necesita reducir la dependencia de personas clave: organigrama formal, comité de dirección, calendario institucional y plan estratégico.",
+    "Necesita documentar lo que hoy funciona de manera informal: comités operativos, tabulador de sueldos y seguimiento con indicadores.",
+    "Su estructura operativa es sólida. Necesita sostenerla con indicadores y desarrollo de talento."
+   ]
+  },
+  "generacion": {
+   "Primera generación (fundador/a)": "Responde el fundador o la fundadora: el reto central suele ser dejar de ser el único punto de decisión y preparar el relevo.",
+   "Segunda generación": "Responde la segunda generación: suele estar en transición de fundador a sociedad de hermanos; conviene ordenar las reglas de propiedad y de participación.",
+   "Tercera generación": "Responde la tercera generación: la propiedad empieza a dispersarse y cobran peso el Consejo de Familia y el Protocolo.",
+   "Cuarta generación o más": "Responde la cuarta generación o más: propiedad dispersa; requiere un gobierno patrimonial robusto y reglas claras de entrada y salida.",
+   "No soy de la familia propietaria": "Responde alguien ajeno a la familia propietaria: su visión puede diferir de la de los dueños y conviene contrastarla en el Diagnóstico Profundo."
+  },
+  "motivo": {
+   "Preparar la sucesión o el relevo generacional": "Su motivo es la sucesión: conviene trabajarla en los tres sistemas (patrimonial, empresarial y operativo).",
+   "Evitar o resolver conflictos dentro de la familia": "Su motivo es el conflicto familiar: conviene priorizar el sistema patrimonial, con Consejo de Familia, Protocolo y separación de roles.",
+   "Ordenar la relación entre familia y empresa (reglas, roles, sueldos)": "Su motivo es ordenar familia y empresa: conviene priorizar la separación de roles y los criterios de ingreso y remuneración de familiares.",
+   "Profesionalizar la dirección y la operación": "Su motivo es profesionalizar: conviene priorizar el sistema operativo, con organigrama, comité de dirección y gestión del talento.",
+   "Proteger el patrimonio familiar": "Su motivo es proteger el patrimonio: conviene priorizar el Acuerdo de Accionistas, la protección de la propiedad y la planeación hereditaria.",
+   "Crecer o abrirme a nuevos socios, inversionistas o financiamiento": "Su motivo es crecer o abrirse a nuevos socios: conviene priorizar el gobierno corporativo, con un Consejo con independientes y reglas claras con los socios.",
+   "otro": "Revisar con el cliente el motivo que expresó, en la primera sesión."
+  },
+  "alertas": {
+   "P4": "No hay reglas escritas que protejan la propiedad ante la sucesión o la dispersión de acciones.",
+   "P5": "Ser accionista da derecho automático a un puesto o a un sueldo, sin importar preparación ni desempeño.",
+   "P8": "El Consejo no tiene facultad real sobre la alta dirección.",
+   "P10": "Los sueldos y bonos de familiares se deciden sin ningún contrapeso.",
+   "P12": "Se mezclan los roles de accionista, consejero y colaborador.",
+   "P13": "La operación depende de una sola persona."
+  },
+  "valoracion": [
+   "Ausente",
+   "Parcial",
+   "Sólido"
+  ]
+ }
 };
